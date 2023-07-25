@@ -1,22 +1,17 @@
-import { RouterProvider, createBrowserRouter } from "react-router-dom";
+import { Outlet } from "react-router-dom";
 import { ThemeProvider } from "./styles/theme";
-import HomePage from "./pages/Home";
-import Mypage from "./pages/Mypage";
-import NavBar from "./components/NavBar";
 
-const router = createBrowserRouter([
-  {
-    path: "/",
-    element: <HomePage />,
-  },
-  { path: "/mypage", element: <Mypage /> },
-]);
+import NavBar from "./components/NavBar";
+import { Suspense } from "react";
+import { SyncLoader } from "react-spinners";
 
 const App = () => {
   return (
     <ThemeProvider>
       <NavBar />
-      <RouterProvider router={router} />
+      <Suspense fallback={<SyncLoader />}>
+        <Outlet />
+      </Suspense>
     </ThemeProvider>
   );
 };

@@ -8,4 +8,5 @@ export const palette = {
   red: "#FA4E18",
   red20: "#FEDCD1",
   blue: "#C6D5FC",
+  white: "#FFFFFF",
 } as const;

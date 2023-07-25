@@ -1,12 +1,14 @@
-import { ThemeProvider as BaseThemeProvider } from '@emotion/react';
+import { ThemeProvider as BaseThemeProvider } from "@emotion/react";
 
-import { palette } from './palette';
-import { typo } from './typo';
+import { palette } from "./palette";
+import { typo } from "./typo";
 
-const theme = {
+export const theme = {
   palette,
   typo,
 };
+export type keyOfPalette = keyof typeof palette;
+export type keyOfTypo = keyof typeof typo;
 
 export const ThemeProvider = (props: React.PropsWithChildren<unknown>) => {
   const { children } = props;

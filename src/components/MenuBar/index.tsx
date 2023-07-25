@@ -46,16 +46,19 @@ export const MenuBar = ({
   };
 
   useEffect(() => {
-    if (contentRef.current.length === menus.length) {
-      setIndicatorPositionAndWidth([
-        convertedPadding[3],
-        contentRef.current[0].getBoundingClientRect().width,
-      ]);
+    if (
+      contentRef.current.length === menus.length &&
+      curActiveMenu + 1 > 0 &&
+      curActiveMenu + 1 <= menus.length
+    ) {
+      menuIndicatorHandler(curActiveMenu);
+    } else {
+      setIndicatorPositionAndWidth([0, 0]);
     }
-  }, [contentRef.current.length]);
+  }, [curActiveMenu]);
 
-  const menuIndicatorHandler = (index: number, e: React.MouseEvent) => {
-    e.preventDefault();
+  const menuIndicatorHandler = (index: number, e?: React.MouseEvent) => {
+    e?.preventDefault();
     const leftMarginWidth = wrapperRef.current
       ? wrapperRef.current.getBoundingClientRect().left
       : 0;
