@@ -14,6 +14,6 @@ export default defineConfig({
     svgr(),
   ],
   resolve: {
-    alias: [{ find: "@", replacement: "/src" }],
+    alias: [{ find: "~", replacement: "/src" }],
   },
 });
