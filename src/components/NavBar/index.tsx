@@ -3,8 +3,6 @@ import PcNavBar from "./PcNavBar";
 import MobileNavBar from "./MobileNavBar";
 import Spacing from "../atoms/Spacing";
 
-export const NavMap = ["/explore", "/demand", "/series"];
-
 const NavBar = () => {
   return (
     <>

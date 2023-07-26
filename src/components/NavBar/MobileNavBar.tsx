@@ -6,6 +6,7 @@ import Hamburger from "hamburger-react";
 import { ReactComponent as SearchIcon } from "~/assets/icon/search-big.svg";
 import { Modal } from "../modal";
 import Button from "../atoms/Button";
+import { theme } from "~/styles/theme";
 
 const MobileNavBar = () => {
   const navigate = useNavigate();
@@ -13,6 +14,17 @@ const MobileNavBar = () => {
   const [hamburgerToggle, setHamburgerToggle] = useState<boolean>(false);
   const [isMobileSearchOpen, setIsMobileSearchOpen] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+
+  const toggleSearch = (flag: boolean) => {
+    setHamburgerToggle(flag);
+    setIsMobileSearchOpen(flag);
+    setIsMobileMenuOpen(false);
+  };
+  const toggleNavMenu = (flag: boolean) => {
+    setHamburgerToggle(flag);
+    setIsMobileMenuOpen(flag);
+    setIsMobileSearchOpen(false);
+  };
 
   return (
     <>
@@ -25,6 +37,8 @@ const MobileNavBar = () => {
               <div
                 onClick={() => {
                   navigate("/");
+                  toggleNavMenu(false);
+                  toggleSearch(false);
                 }}
               >
                 로고
@@ -32,8 +46,7 @@ const MobileNavBar = () => {
               {!isMobileMenuOpen && (
                 <SearchIcon
                   onClick={() => {
-                    setIsMobileSearchOpen(!isMobileSearchOpen);
-                    setHamburgerToggle(!hamburgerToggle);
+                    toggleSearch(true);
                   }}
                 />
               )}
@@ -46,12 +59,10 @@ const MobileNavBar = () => {
               toggled={hamburgerToggle}
               toggle={() => {
                 if (hamburgerToggle) {
-                  setHamburgerToggle(!hamburgerToggle);
-                  setIsMobileMenuOpen(false);
-                  setIsMobileSearchOpen(false);
+                  toggleSearch(false);
+                  toggleNavMenu(false);
                 } else {
-                  setHamburgerToggle(!hamburgerToggle);
-                  setIsMobileMenuOpen(true);
+                  toggleNavMenu(true);
                 }
               }}
               rounded
@@ -63,19 +74,55 @@ const MobileNavBar = () => {
       <Modal
         position="top"
         open={isMobileMenuOpen}
-        onClose={() => {
-          setIsMobileMenuOpen(false);
-          setHamburgerToggle(false);
-        }}
+        onClose={() => toggleNavMenu(false)}
       >
         <NavContainer gap={16} direction={"column"} align={"flex-start"}>
-          <StyledNavLink to="/explore">진행 중 공구</StyledNavLink>
-          <StyledNavLink to="/explore">수요조사</StyledNavLink>
-          <StyledNavLink to="/explore">공구 시리즈</StyledNavLink>
-          <StyledNavLink to="/explore">마이페이지</StyledNavLink>
+          <StyledNavLink
+            to="/explore"
+            onClick={() => toggleNavMenu(false)}
+            style={({ isActive }) =>
+              isActive ? { color: theme.palette.red } : {}
+            }
+          >
+            진행 중 공구
+          </StyledNavLink>
+          <StyledNavLink
+            to="/demand"
+            onClick={() => toggleNavMenu(false)}
+            style={({ isActive }) =>
+              isActive ? { color: theme.palette.red } : {}
+            }
+          >
+            수요조사
+          </StyledNavLink>
+          <StyledNavLink
+            to="/series"
+            onClick={() => toggleNavMenu(false)}
+            style={({ isActive }) =>
+              isActive ? { color: theme.palette.red } : {}
+            }
+          >
+            공구 시리즈
+          </StyledNavLink>
+          <StyledNavLink
+            to="/mypage"
+            onClick={() => toggleNavMenu(false)}
+            style={({ isActive }) =>
+              isActive ? { color: theme.palette.red } : {}
+            }
+          >
+            마이페이지
+          </StyledNavLink>
         </NavContainer>
         <Line />
-        <Button size="sm" color="red">
+        <Button
+          size="sm"
+          color="red"
+          onClick={() => {
+            toggleNavMenu(false);
+            navigate("/admin/info");
+          }}
+        >
           공구 시작하기
         </Button>
       </Modal>
@@ -122,8 +169,12 @@ const HamburgerButton = styled.div`
 const StyledNavLink = styled(NavLink)`
   ${({ theme }) => theme.typo["heading.4"]}
   color : ${({ theme }) => theme.palette.grey6};
+  .active {
+    color: ${({ theme }) => theme.palette.red};
+  }
 `;
 const NavContainer = styled(FlexBox)``;
+
 const Line = styled.div`
   width: 100%;
   height: 1px;

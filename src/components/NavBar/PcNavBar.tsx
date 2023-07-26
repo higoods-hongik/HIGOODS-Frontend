@@ -5,18 +5,20 @@ import { useNavigate, useLocation } from "react-router-dom";
 import { MenuBar } from "../MenuBar";
 import { FlexBox } from "../atoms/FlexBox";
 import SearchInput from "../atoms/SearchInput";
-import { NavMap } from ".";
+
 import { ReactComponent as ProfileIcon } from "~/assets/icon/profile.svg";
 import styled from "@emotion/styled";
+
+export const navMap = ["/explore", "/demand", "/series"];
 
 const PcNavBar = () => {
   const navigate = useNavigate();
   const { pathname } = useLocation();
   const [menuIndex, setMenuIndex] = useState<number>(
-    NavMap.findIndex((v) => v === pathname)
+    navMap.findIndex((v) => v === pathname)
   );
   useEffect(() => {
-    navigate(NavMap[menuIndex]);
+    0 <= menuIndex && menuIndex < navMap.length && navigate(navMap[menuIndex]);
   }, [menuIndex]);
 
   return (
@@ -44,10 +46,22 @@ const PcNavBar = () => {
         </LeftContainer>
         <FlexBox gap={14}>
           <SearchInput />
-          <Button size="sm" color="red">
+          <Button
+            size="sm"
+            color="red"
+            onClick={() => {
+              setMenuIndex(-1);
+              navigate("/admin/info");
+            }}
+          >
             공구 시작하기
           </Button>
-          <ProfileIcon />
+          <ProfileIcon
+            onClick={() => {
+              navigate("/mypage");
+              setMenuIndex(-1);
+            }}
+          />
         </FlexBox>
       </NavBarPcContainer>
     </Wrapper>
