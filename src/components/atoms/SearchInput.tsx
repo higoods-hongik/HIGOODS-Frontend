@@ -7,9 +7,14 @@ interface SearchInputProps extends ComponentProps<"input"> {
   fullWidth?: boolean;
 }
 
-const SearchInput = ({ fullWidth }: SearchInputProps) => {
+const SearchInput = ({ fullWidth, ...rest }: SearchInputProps) => {
   return (
-    <Container fullWidth={fullWidth} gap={8} justify={"space-between"}>
+    <Container
+      fullWidth={fullWidth}
+      gap={8}
+      justify={"space-between"}
+      {...rest}
+    >
       <SearchIcon />
       <InputBox placeholder="검색어를 입력하세요." />
     </Container>

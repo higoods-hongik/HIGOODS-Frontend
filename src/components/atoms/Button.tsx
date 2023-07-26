@@ -88,4 +88,6 @@ const Container = styled.button<Props>`
   padding: ${({ size }) =>
     `${SIZE_MAP[size].padding[0]}px ${SIZE_MAP[size].padding[1]}px`};
   ${({ theme, size }) => theme.typo[SIZE_MAP[size].typo]}
+
+  flex-shrink:0;
 `;

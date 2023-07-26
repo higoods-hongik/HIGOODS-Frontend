@@ -85,6 +85,7 @@ export const MenuBar = ({
                   css={css`
                     display: block;
                     height: 22px;
+                    white-space: nowrap;
                   `}
                   typo="heading.4"
                   color={curActiveMenu === index ? "red" : "grey4"}
