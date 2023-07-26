@@ -2,8 +2,8 @@ import styled from "@emotion/styled";
 
 import React, { ComponentProps, useEffect, useState } from "react";
 import { useRef } from "react";
-import { Padding, PaddingSize } from "../atoms/Padding";
-import { FlexBox } from "../atoms/FlexBox";
+import { Padding, PaddingSize } from "../atoms/layout/Padding";
+import { FlexBox } from "../atoms/layout/FlexBox";
 import { Txt } from "../atoms/Txt";
 import { css } from "@emotion/react";
 

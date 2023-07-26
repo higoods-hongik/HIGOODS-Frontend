@@ -1,7 +1,7 @@
 import styled from "@emotion/styled";
 import { HTMLAttributes, ReactNode } from "react";
-import { Padding } from "../atoms/Padding";
-import { FlexBox } from "../atoms/FlexBox";
+import { Padding } from "../atoms/layout/Padding";
+import { FlexBox } from "../atoms/layout/FlexBox";
 import { createPortal } from "react-dom";
 
 export interface ModalBoxProps extends HTMLAttributes<HTMLDivElement> {

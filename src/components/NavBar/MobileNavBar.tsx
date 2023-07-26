@@ -1,6 +1,6 @@
 import styled from "@emotion/styled";
 import { useRef, useState } from "react";
-import { FlexBox } from "../atoms/FlexBox";
+import { FlexBox } from "../atoms/layout/FlexBox";
 import { NavLink, useNavigate } from "react-router-dom";
 import Hamburger from "hamburger-react";
 import { ReactComponent as SearchIcon } from "~/assets/icon/search-big.svg";

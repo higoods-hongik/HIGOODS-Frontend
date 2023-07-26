@@ -1,7 +1,7 @@
 import styled from "@emotion/styled";
 import { ComponentProps } from "react";
 import { ReactComponent as SearchIcon } from "~/assets/icon/search.svg";
-import { FlexBox } from "./FlexBox";
+import { FlexBox } from "./layout/FlexBox";
 
 interface SearchInputProps extends ComponentProps<"input"> {
   fullWidth?: boolean;

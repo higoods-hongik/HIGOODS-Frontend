@@ -3,7 +3,7 @@ import Button from "../atoms/Button";
 import { useState, useEffect } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
 import { MenuBar } from "../MenuBar";
-import { FlexBox } from "../atoms/FlexBox";
+import { FlexBox } from "../atoms/layout/FlexBox";
 import SearchInput from "../atoms/SearchInput";
 
 import { ReactComponent as ProfileIcon } from "~/assets/icon/profile.svg";
@@ -75,16 +75,17 @@ const Wrapper = styled(FlexBox)`
   height: 54px;
   width: 100%;
   border-bottom: 1px solid ${({ theme }) => theme.palette.black};
+  background-color: ${({ theme }) => theme.palette.white};
   box-sizing: border-box;
   position: fixed;
+  z-index: 2;
 `;
 
 const NavBarPcContainer = styled(FlexBox)`
   height: 100%;
   width: 100%;
   max-width: 984px;
-  margin: 0 20px;
-  background-color: ${({ theme }) => theme.palette.white};
+  margin: 0 16px;
 `;
 const LeftContainer = styled(FlexBox)`
   height: 100%;

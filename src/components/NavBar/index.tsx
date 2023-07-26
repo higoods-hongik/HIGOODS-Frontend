@@ -1,7 +1,7 @@
-import MediaQuery from "../atoms/MediaQuery";
+import MediaQuery from "../atoms/layout/MediaQuery";
 import PcNavBar from "./PcNavBar";
 import MobileNavBar from "./MobileNavBar";
-import Spacing from "../atoms/Spacing";
+import Spacing from "../atoms/layout/Spacing";
 
 const NavBar = () => {
   return (

@@ -1,5 +1,5 @@
 import { Outlet } from "react-router-dom";
-import { ThemeProvider } from "./styles/theme";
+import { ThemeProvider, media } from "./styles/theme";
 
 import NavBar from "./components/NavBar";
 import { Suspense } from "react";
@@ -10,15 +10,17 @@ const App = () => {
   return (
     <ThemeProvider>
       <NavBar />
-      <Suspense
-        fallback={
-          <FallBackContainer>
-            <SyncLoader color="#E6E6E6" />
-          </FallBackContainer>
-        }
-      >
-        <Outlet />
-      </Suspense>
+      <Container>
+        <Suspense
+          fallback={
+            <FallBackContainer>
+              <SyncLoader color="#E6E6E6" />
+            </FallBackContainer>
+          }
+        >
+          <Outlet />
+        </Suspense>
+      </Container>
     </ThemeProvider>
   );
 };
@@ -33,4 +35,13 @@ const FallBackContainer = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
+`;
+
+const Container = styled.div`
+  ${media.pc} {
+    min-width: 984px;
+  }
+  ${media.mobile} {
+    overflow-x: hidden;
+  }
 `;

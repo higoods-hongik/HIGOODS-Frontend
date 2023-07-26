@@ -8,7 +8,7 @@ export interface TextProps extends HTMLAttributes<HTMLSpanElement> {
   as?: "span" | "p" | "h1" | "h2" | "h3" | "h4" | "h5" | "h6" | "div";
   typo: keyof typeof typo;
   color?: keyof typeof palette;
-  children: string;
+  children?: string;
 }
 
 export type TextPropsKey = "typo" | "color";
@@ -21,7 +21,7 @@ export type TextPropsKey = "typo" | "color";
 export const Txt = ({
   typo,
   as = "span",
-  color,
+  color = "black",
   children,
   ...props
 }: TextProps) => {
