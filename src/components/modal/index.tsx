@@ -2,6 +2,7 @@ import styled from "@emotion/styled";
 import { HTMLAttributes, ReactNode } from "react";
 import { Padding } from "../atoms/Padding";
 import { FlexBox } from "../atoms/FlexBox";
+import { createPortal } from "react-dom";
 
 export interface ModalBoxProps extends HTMLAttributes<HTMLDivElement> {
   open: boolean;
@@ -18,7 +19,7 @@ export const Modal = ({
   position = "center",
   ...props
 }: ModalBoxProps) => {
-  return (
+  return createPortal(
     <>
       {open && (
         <>
@@ -30,7 +31,8 @@ export const Modal = ({
           </ModalContainer>
         </>
       )}
-    </>
+    </>,
+    document.body
   );
 };
 
@@ -47,7 +49,6 @@ const ModalContainer = styled(FlexBox)<{ position: PositionType }>`
     }
   }};
   width: 100%;
-  height: 100svh;
   padding: 70px 16px;
 `;
 
