@@ -1,13 +1,13 @@
 import styled from "@emotion/styled";
 import { Col, Row } from "antd/es/grid";
-import PcContainer from "~/components/atoms/layout/PcContainer";
+import PcContainer from "~/components/layout/PcContainer";
 import HomeHeading from "./components/HomeHeading";
 import BestPreviewItem from "./components/BestPreviewItem";
-import { FlexBox } from "~/components/atoms/layout/FlexBox";
-import MediaSpacing from "~/components/atoms/layout/MediaSpacing";
+import { FlexBox } from "~/components/layout/FlexBox";
+import MediaSpacing from "~/components/layout/MediaSpacing";
 import { GongGuItemMobile } from "~/components/GongGuItem/GongGuItemMobile";
-import MobileContainer from "~/components/atoms/layout/MobileContainer";
-import MediaQuery from "~/components/atoms/layout/MediaQuery";
+import MobileContainer from "~/components/layout/MobileContainer";
+import MediaQuery from "~/components/layout/MediaQuery";
 import { GongGuItemRow } from "~/components/GongGuItem/GongGuItemRow";
 import { css } from "@emotion/react";
 

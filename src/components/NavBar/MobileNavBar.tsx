@@ -1,10 +1,10 @@
 import styled from "@emotion/styled";
 import { useRef, useState } from "react";
-import { FlexBox } from "../atoms/layout/FlexBox";
+import { FlexBox } from "../layout/FlexBox";
 import { NavLink, useNavigate } from "react-router-dom";
 import Hamburger from "hamburger-react";
 import { ReactComponent as SearchIcon } from "~/assets/icon/search-big.svg";
-import { Modal } from "../modal";
+import { Modal } from "../Modal";
 import Button from "../atoms/Button";
 import { theme } from "~/styles/theme";
 

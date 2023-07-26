@@ -3,7 +3,7 @@ import Button from "../atoms/Button";
 import { useState, useEffect } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
 import { MenuBar } from "../MenuBar";
-import { FlexBox } from "../atoms/layout/FlexBox";
+import { FlexBox } from "../layout/FlexBox";
 import SearchInput from "../atoms/SearchInput";
 
 import { ReactComponent as ProfileIcon } from "~/assets/icon/profile.svg";

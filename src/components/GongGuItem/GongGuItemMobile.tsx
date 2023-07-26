@@ -1,6 +1,6 @@
 import styled from "@emotion/styled";
 import { ComponentProps } from "react";
-import { FlexBox } from "../atoms/layout/FlexBox";
+import { FlexBox } from "../layout/FlexBox";
 
 export interface GongGuItemProps extends ComponentProps<"div"> {
   category?: string;

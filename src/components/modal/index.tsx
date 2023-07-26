@@ -1,7 +1,6 @@
 import styled from "@emotion/styled";
 import { HTMLAttributes, ReactNode } from "react";
-import { Padding } from "../atoms/layout/Padding";
-import { FlexBox } from "../atoms/layout/FlexBox";
+import { Padding } from "../layout/Padding";
 import { createPortal } from "react-dom";
 
 export interface ModalBoxProps extends HTMLAttributes<HTMLDivElement> {
@@ -12,45 +11,21 @@ export interface ModalBoxProps extends HTMLAttributes<HTMLDivElement> {
 }
 type PositionType = "center" | "top" | "bottom";
 
-export const Modal = ({
-  open,
-  onClose,
-  children,
-  position = "center",
-  ...props
-}: ModalBoxProps) => {
+export const Modal = ({ open, onClose, children, ...props }: ModalBoxProps) => {
   return createPortal(
     <>
       {open && (
         <>
           <Dimmed onClick={onClose} />
-          <ModalContainer position={position} direction={"column"}>
-            <ModalBox size={[24, 16]} {...props}>
-              {children}
-            </ModalBox>
-          </ModalContainer>
+          <ModalBox size={[24, 16]} {...props}>
+            {children}
+          </ModalBox>
         </>
       )}
     </>,
     document.body
   );
 };
-
-const ModalContainer = styled(FlexBox)<{ position: PositionType }>`
-  align-items: center;
-  justify-content: ${({ position }) => {
-    switch (position) {
-      case "top":
-        return "flex-start";
-      case "center":
-        return "center";
-      case "bottom":
-        return "flex-end";
-    }
-  }};
-  width: 100%;
-  padding: 70px 16px;
-`;
 
 const ModalBox = styled(Padding)`
   @keyframes grow {
@@ -64,8 +39,12 @@ const ModalBox = styled(Padding)`
   background-color: ${({ theme }) => theme.palette.white};
   animation: 0.1s forwards grow cubic-bezier(0.465, 0.183, 0.153, 0.946);
   border: 1px solid black;
+  position: fixed;
+  top: 70px;
+  left: 16px;
+  width: calc(100% - 32px);
+
   z-index: 3;
-  width: 100%;
 `;
 
 const Dimmed = styled.div`

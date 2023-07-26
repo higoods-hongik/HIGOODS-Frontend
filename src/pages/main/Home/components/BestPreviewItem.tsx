@@ -1,6 +1,6 @@
 import styled from "@emotion/styled";
 import { Txt } from "~/components/atoms/Txt";
-import { FlexBox } from "~/components/atoms/layout/FlexBox";
+import { FlexBox } from "~/components/layout/FlexBox";
 
 export interface BestPreviewProps {
   imageUrl?: string;
