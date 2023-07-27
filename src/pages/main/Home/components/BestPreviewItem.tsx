@@ -24,7 +24,9 @@ const BestPreviewItem = ({
         justify={"space-between"}
         align={"flex-start"}
       >
-        <Txt typo="heading.4">{title}</Txt>
+        <Title typo="heading.4" as="div">
+          {title}
+        </Title>
         <Txt typo="body.2" color="grey4">
           {description}
         </Txt>
@@ -52,5 +54,10 @@ const ItemImage = styled.div`
 
 const Contents = styled(FlexBox)`
   margin-top: 9px;
-  height: 52px;
+  width: 100%;
+`;
+
+const Title = styled(Txt)`
+  display: block;
+  word-break: break-word;
 `;

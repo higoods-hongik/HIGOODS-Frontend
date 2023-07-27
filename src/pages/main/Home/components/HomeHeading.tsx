@@ -1,6 +1,6 @@
 import { FlexBox } from "~/components/layout/FlexBox";
 import { ReactComponent as ShortCutIcon } from "~/assets/icon/shortcut.svg";
-import MediaQuery from "~/components/layout/MediaQuery";
+import MediaQuery from "~/components/layout/Media";
 import { Txt } from "~/components/atoms/Txt";
 import { useNavigate } from "react-router-dom";
 import styled from "@emotion/styled";

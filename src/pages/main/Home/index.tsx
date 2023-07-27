@@ -3,19 +3,19 @@ import { Col, Row } from "antd/es/grid";
 import PcContainer from "~/components/layout/PcContainer";
 import HomeHeading from "./components/HomeHeading";
 import BestPreviewItem from "./components/BestPreviewItem";
-import { FlexBox } from "~/components/layout/FlexBox";
-import MediaSpacing from "~/components/layout/MediaSpacing";
 import { GongGuItemMobile } from "~/components/GongGuItem/GongGuItemMobile";
 import MobileContainer from "~/components/layout/MobileContainer";
-import MediaQuery from "~/components/layout/MediaQuery";
 import { GongGuItemRow } from "~/components/GongGuItem/GongGuItemRow";
-import { css } from "@emotion/react";
+import { media } from "~/styles/theme";
+import { Spacing } from "~/components/layout/Spacing";
+import Media from "~/components/layout/Media";
+import MyHistory from "./components/MyHistory";
 
 const HomePage = () => {
   return (
     <>
       <BannerImage />
-      <MediaSpacing mobile={35} pc={42} />
+      <Media.Spacing mobile={35} pc={42} />
       <PcContainer>
         <Row gutter={24}>
           <Col xs={24} sm={24} md={16}>
@@ -24,32 +24,25 @@ const HomePage = () => {
               mobileLabel="BEST 공구"
               link="/explore"
             />
-            <MediaSpacing mobile={16} pc={27} />
+            <Media.Spacing mobile={16} pc={27} />
             <MobileContainer>
-              <FlexBox gap={24}>
+              <BestPreviewItemContainer>
                 <BestPreviewItem
-                  title="공구제목공구제목"
+                  title="공구제목공구제목공구제목공구제목공구제목공구제목공구제목공구제목"
                   description="공구설명공구설명"
                 />
                 <BestPreviewItem title="asdf" description="asdsadf" />
-              </FlexBox>
+              </BestPreviewItemContainer>
             </MobileContainer>
-            <MediaSpacing mobile={35} pc={57} />
+            <Media.Spacing mobile={35} pc={57} />
             <HomeHeading
               pcLabel="최근 올라온 공구 목록들 "
               mobileLabel="NEW 업데이트"
               link="/explore"
             />
-            <MediaSpacing mobile={0} pc={27} />
-            <MediaQuery.PC>
-              <div
-                css={css`
-                  display: grid;
-                  grid-template-columns: 1fr 1fr;
-                  grid-column-gap: 24px;
-                  grid-row-gap: 30px;
-                `}
-              >
+            <Media.Spacing mobile={0} pc={27} />
+            <Media.PC>
+              <GongGuItemRowContainer>
                 <GongGuItemRow
                   category="의류"
                   title="공구제목 공구제목 공구제목 공구제목 공구제목 공구제목 공구제목 공구제목"
@@ -74,9 +67,9 @@ const HomePage = () => {
                   description="한줄 설명 한줄설명"
                   process="진행 현황"
                 />
-              </div>
-            </MediaQuery.PC>
-            <MediaQuery.Mobile>
+              </GongGuItemRowContainer>
+            </Media.PC>
+            <Media.Mobile>
               <MobileContainer>
                 <GongGuItemMobile
                   category="의류"
@@ -103,11 +96,37 @@ const HomePage = () => {
                   process="진행 현황"
                 />
               </MobileContainer>
-            </MediaQuery.Mobile>
+            </Media.Mobile>
           </Col>
-          <Col xs={24} sm={24} md={8}></Col>
+          <Col xs={24} sm={24} md={8}>
+            <Media.Padding mobile={0} pc={[0, 0, 0, 60]}>
+              <Media.Mobile>
+                <Spacing size={40} />
+                <HomeHeading mobileLabel="내 공구 내역" />
+              </Media.Mobile>
+              <Media.PC>
+                <PcMyHistoryHeading>내 공구 내역</PcMyHistoryHeading>
+                <Spacing size={20} />
+              </Media.PC>
+              <MyHistory
+                title="공구제목"
+                description="공구 한줄소개"
+                date="2023.05.23"
+                process="진행 상황"
+                updateNotice="업데이트 공지내용"
+              />
+              <MyHistory
+                title="공구제목"
+                description="공구 한줄소개"
+                date="2023.05.23"
+                process="진행 상황"
+                updateNotice="업데이트 공지내용 업데이트 공지내용업데이트 공지내용업데이트 공지내용업데이트 공지내용업데이트 공지내용업데이트 공지내용업데이트 공지내용"
+              />
+            </Media.Padding>
+          </Col>
         </Row>
       </PcContainer>
+      <Spacing size={100} />
     </>
   );
 };
@@ -117,5 +136,25 @@ export default HomePage;
 const BannerImage = styled.div`
   width: 100%;
   height: 433px;
+  ${media.mobile} {
+    height: 375px;
+  }
   background-color: lightgray;
+`;
+const BestPreviewItemContainer = styled.div`
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  grid-column-gap: 24px;
+  grid-row-gap: 30px;
+`;
+const GongGuItemRowContainer = styled.div`
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  grid-column-gap: 24px;
+  grid-row-gap: 30px;
+`;
+
+const PcMyHistoryHeading = styled.div`
+  ${({ theme }) => theme.typo["heading.3"]}
+  padding-top: 5px;
 `;

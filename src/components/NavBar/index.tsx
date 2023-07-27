@@ -1,7 +1,7 @@
-import MediaQuery from "../layout/MediaQuery";
+import MediaQuery from "../layout/Media";
 import PcNavBar from "./PcNavBar";
 import MobileNavBar from "./MobileNavBar";
-import Spacing from "../layout/Spacing";
+import { Spacing } from "../layout/Spacing";
 
 const NavBar = () => {
   return (

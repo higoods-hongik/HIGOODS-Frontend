@@ -7,11 +7,14 @@ export interface SpacingProps extends HTMLAttributes<HTMLDivElement> {
   size: number;
 }
 
-const Spacing = ({ direction = "vertical", size, ...props }: SpacingProps) => {
+export const Spacing = ({
+  direction = "vertical",
+  size,
+  ...props
+}: SpacingProps) => {
   return <Container direction={direction} size={size} {...props} />;
 };
 
-export default Spacing;
 const Container = styled.div<SpacingProps>`
   flex: "none";
   width: ${({ direction, size }) =>
