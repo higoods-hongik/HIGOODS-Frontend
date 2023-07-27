@@ -1,20 +1,21 @@
-import { ComponentProps } from "react";
+import { ReactNode } from "react";
 import { useMediaQuery } from "react-responsive";
 import { Spacing as BaseSpacing } from "./Spacing";
 import { Padding as BasePadding, PaddingProps, PaddingSize } from "./Padding";
+import React from "react";
 
-const Mobile = ({ children, ...rest }: ComponentProps<"div">) => {
+const Mobile = ({ children }: { children: ReactNode }) => {
   const isMobile = useMediaQuery({
     query: "(max-width:767px)",
   });
-  return <div {...rest}>{isMobile && children}</div>;
+  return <React.Fragment>{isMobile && children}</React.Fragment>;
 };
 
-const PC = ({ children, ...rest }: ComponentProps<"div">) => {
+const PC = ({ children }: { children: ReactNode }) => {
   const isPc = useMediaQuery({
     query: "(min-width:768px) ",
   });
-  return <div {...rest}>{isPc && children}</div>;
+  return <React.Fragment>{isPc && children}</React.Fragment>;
 };
 
 const Spacing = ({ mobile, pc }: { mobile: number; pc: number }) => {

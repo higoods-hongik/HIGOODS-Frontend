@@ -93,6 +93,10 @@ const UpdateNotice = styled.div`
   display: -webkit-box;
   -webkit-line-clamp: 3; // 원하는 라인수
   -webkit-box-orient: vertical;
+
+  ${media.mobile} {
+    padding-right: 94px;
+  }
 `;
 const StyledLink = styled(Link)`
   ${({ theme }) => theme.typo["label.1"]}

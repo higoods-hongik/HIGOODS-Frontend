@@ -3,13 +3,12 @@ import { Col, Row } from "antd/es/grid";
 import PcContainer from "~/components/layout/PcContainer";
 import HomeHeading from "./components/HomeHeading";
 import BestPreviewItem from "./components/BestPreviewItem";
-import { GongGuItemMobile } from "~/components/GongGuItem/GongGuItemMobile";
 import MobileContainer from "~/components/layout/MobileContainer";
-import { GongGuItemRow } from "~/components/GongGuItem/GongGuItemRow";
 import { media } from "~/styles/theme";
 import { Spacing } from "~/components/layout/Spacing";
 import Media from "~/components/layout/Media";
 import MyHistory from "./components/MyHistory";
+import GongGuItem from "~/components/GongGuItem";
 
 const HomePage = () => {
   return (
@@ -41,62 +40,50 @@ const HomePage = () => {
               link="/explore"
             />
             <Media.Spacing mobile={0} pc={27} />
-            <Media.PC>
+            <MobileContainer>
               <GongGuItemRowContainer>
-                <GongGuItemRow
-                  category="의류"
-                  title="공구제목 공구제목 공구제목 공구제목 공구제목 공구제목 공구제목 공구제목"
-                  description="한줄 설명 한줄설명"
-                  process="진행 현황"
+                <GongGuItem
+                  varients="row"
+                  data={{
+                    category: "의류",
+                    title:
+                      "공구제목 공구제목 공구제목 공구제목 공구제목 공구제목 공구제목 공구제목",
+                    description: "한줄 설명 한줄설명",
+                    process: "진행 현황",
+                  }}
                 />
-                <GongGuItemRow
-                  category="의류"
-                  title="공구제목 공구제목 공구제목 공구제목 공구제목 공구제목 공구제목 공구제목"
-                  description="한줄 설명 한줄설명"
-                  process="진행 현황"
+                <GongGuItem
+                  varients="row"
+                  data={{
+                    category: "의류",
+                    title:
+                      "공구제목 공구제목 공구제목 공구제목 공구제목 공구제목 공구제목 공구제목",
+                    description: "한줄 설명 한줄설명",
+                    process: "진행 현황",
+                  }}
                 />
-                <GongGuItemRow
-                  category="의류"
-                  title="공구제목 공구제목 공구제목 공구제목 공구제목 공구제목 공구제목 공구제목"
-                  description="한줄 설명 한줄설명"
-                  process="진행 현황"
+                <GongGuItem
+                  varients="row"
+                  data={{
+                    category: "의류",
+                    title:
+                      "공구제목 공구제목 공구제목 공구제목 공구제목 공구제목 공구제목 공구제목",
+                    description: "한줄 설명 한줄설명",
+                    process: "진행 현황",
+                  }}
                 />
-                <GongGuItemRow
-                  category="의류"
-                  title="공구제목 공구제목 공구제목 공구제목 공구제목 공구제목 공구제목 공구제목"
-                  description="한줄 설명 한줄설명"
-                  process="진행 현황"
+                <GongGuItem
+                  varients="row"
+                  data={{
+                    category: "의류",
+                    title:
+                      "공구제목 공구제목 공구제목 공구제목 공구제목 공구제목 공구제목 공구제목",
+                    description: "한줄 설명 한줄설명",
+                    process: "진행 현황",
+                  }}
                 />
               </GongGuItemRowContainer>
-            </Media.PC>
-            <Media.Mobile>
-              <MobileContainer>
-                <GongGuItemMobile
-                  category="의류"
-                  title="공구제목 공구제목 공구제목 공구제목 공구제목 공구제목 공구제목 공구제목"
-                  description="한줄 설명 한줄설명"
-                  process="진행 현황"
-                />
-                <GongGuItemMobile
-                  category="의류"
-                  title="공구제목 공구제목"
-                  description="한줄 설명 한줄설명"
-                  process="진행 현황"
-                />
-                <GongGuItemMobile
-                  category="의류"
-                  title="공구제목 공구제목"
-                  description="한줄 설명 한줄설명"
-                  process="진행 현황"
-                />
-                <GongGuItemMobile
-                  category="의류"
-                  title="공구제목 공구제목"
-                  description="한줄 설명 한줄설명"
-                  process="진행 현황"
-                />
-              </MobileContainer>
-            </Media.Mobile>
+            </MobileContainer>
           </Col>
           <Col xs={24} sm={24} md={8}>
             <Media.Padding mobile={0} pc={[0, 0, 0, 60]}>
@@ -148,10 +135,12 @@ const BestPreviewItemContainer = styled.div`
   grid-row-gap: 30px;
 `;
 const GongGuItemRowContainer = styled.div`
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  grid-column-gap: 24px;
-  grid-row-gap: 30px;
+  ${media.pc} {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    grid-column-gap: 24px;
+    grid-row-gap: 30px;
+  }
 `;
 
 const PcMyHistoryHeading = styled.div`
