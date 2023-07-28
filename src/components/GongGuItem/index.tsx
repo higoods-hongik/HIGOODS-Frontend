@@ -2,6 +2,7 @@ import { ComponentProps } from "react";
 import Media from "../layout/Media";
 import { GongGuItemMobile } from "./GongGuItemMobile";
 import { GongGuItemRow } from "./GongGuItemRow";
+import { GongGuItemCol } from "./GongGuItemCol";
 
 export type GongGuItemVarients = "row" | "col" | "wide";
 export interface GongGuItemProps extends ComponentProps<"div"> {
@@ -18,7 +19,7 @@ const gongGuItemMap: Record<
   (props: GongGuItemProps) => JSX.Element
 > = {
   row: (props: GongGuItemProps) => <GongGuItemRow {...props} />,
-  col: () => <></>,
+  col: (props: GongGuItemProps) => <GongGuItemCol {...props} />,
   wide: () => <></>,
 };
 

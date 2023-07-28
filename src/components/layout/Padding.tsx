@@ -23,7 +23,7 @@ export type PaddingSize =
  */
 export const Padding = ({
   children,
-  size = [0, 16],
+  size = [0, 0],
   fill = false,
   ...props
 }: PaddingProps) => {

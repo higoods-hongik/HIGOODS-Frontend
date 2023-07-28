@@ -1,14 +1,6 @@
 import styled from "@emotion/styled";
-import { ComponentProps } from "react";
 import { FlexBox } from "../layout/FlexBox";
-
-export interface GongGuItemProps extends ComponentProps<"div"> {
-  category?: string;
-  title?: string;
-  description?: string;
-  process?: string;
-  price?: number;
-}
+import { GongGuItemProps } from ".";
 
 export const GongGuItemMobile = ({
   category,
