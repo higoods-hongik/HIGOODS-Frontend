@@ -24,7 +24,7 @@ const PcNavBar = () => {
   return (
     <Wrapper>
       <NavBarPcContainer justify={"space-between"} gap={20}>
-        <LeftContainer gap={24}>
+        <LeftContainer gap={44}>
           <div
             onClick={() => {
               setMenuIndex(-1);
