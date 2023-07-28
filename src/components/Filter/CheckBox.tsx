@@ -6,11 +6,10 @@ import { useFilterContext } from "./useFilterContext";
 import { FlexBox } from "../layout/FlexBox";
 
 export interface CheckBoxProps extends ComponentProps<"input"> {
-  label: string;
   value: string;
 }
 
-const CheckBox = ({ label, value }: CheckBoxProps) => {
+const CheckBox = ({ children, value }: CheckBoxProps) => {
   const { checkedValue, setCheckedValue } = useFilterContext();
   const [checked, setChecked] = useState(false);
 
@@ -29,14 +28,14 @@ const CheckBox = ({ label, value }: CheckBoxProps) => {
     <Wrapper>
       <CheckBoxInput
         type="checkbox"
-        id={label}
+        id={value}
         value={value}
         onChange={handleChange}
       />
-      <label htmlFor={label}>
+      <label htmlFor={value}>
         <Container gap={8}>
           {checked ? <CheckboxTrueIcon /> : <CheckboxFalseIcon />}
-          <LabelText checked={checked}>{label}</LabelText>
+          <LabelText checked={checked}>{children}</LabelText>
         </Container>
       </label>
     </Wrapper>

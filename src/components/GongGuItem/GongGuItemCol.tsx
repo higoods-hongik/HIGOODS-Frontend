@@ -1,42 +1,34 @@
 import styled from "@emotion/styled";
-import { FlexBox } from "../layout/FlexBox";
 import { GongGuItemProps } from ".";
 
-export const GongGuItemRow = ({
+export const GongGuItemCol = ({
   category,
   title,
   description,
   process,
+  price,
 }: GongGuItemProps) => {
   return (
-    <Wrapper gap={14}>
-      <ContentsContainer
-        direction={"column"}
-        justify={"space-between"}
-        align={"flex-start"}
-      >
-        <Contents>
-          <GongGuCategory>{category}</GongGuCategory>
-          <GongGuTitle>{title}</GongGuTitle>
-          <GongGuDescription>{description}</GongGuDescription>
-        </Contents>
-        <GongGuProcess>{process}</GongGuProcess>
-      </ContentsContainer>
-      <ItemImage>
-        <img src="" />
-      </ItemImage>
+    <Wrapper>
+      <ItemImage imageUrl={""} />
+      <Contents>
+        <GongGuCategory>{category}</GongGuCategory>
+        <GongGuTitle>{title}</GongGuTitle>
+        <GongGuDescription>{description}</GongGuDescription>
+      </Contents>
+      <Devider />
+      <GongGuProcess>{process}</GongGuProcess>
+      <GongGuPrice>{price?.toLocaleString("ko-KR")}원</GongGuPrice>
     </Wrapper>
   );
 };
 
-const Wrapper = styled(FlexBox)`
-  justify-content: space-between;
+const Wrapper = styled.div`
+  width: 100%;
 `;
-const ContentsContainer = styled(FlexBox)`
-  height: 144px;
-`;
+
 const Contents = styled.div`
-  width: 144px;
+  margin-top: 20px;
   & > div {
     overflow: hidden;
     text-overflow: ellipsis;
@@ -53,33 +45,38 @@ const GongGuCategory = styled.div`
   color :${({ theme }) => theme.palette.grey4};
 `;
 const GongGuTitle = styled.div`
-  ${({ theme }) => theme.typo["heading.4"]}
+  ${({ theme }) => theme.typo["heading.3"]}
   color :${({ theme }) => theme.palette.black};
-  margin-top: 6px;
+  margin-top: 8px;
 `;
 const GongGuDescription = styled.div`
   ${({ theme }) => theme.typo["body.2"]}
   color :${({ theme }) => theme.palette.grey4};
-  margin-top: 6px;
+  margin-top: 8px;
 `;
 const GongGuProcess = styled.div`
   ${({ theme }) => theme.typo["label.2"]}
   color :${({ theme }) => theme.palette.red};
 `;
+const GongGuPrice = styled.div`
+  ${({ theme }) => theme.typo["heading.4"]}
+  color :${({ theme }) => theme.palette.black};
+  margin-top: 8px;
+`;
 
-const ItemImage = styled.div`
-  flex-shrink: 0;
-  position: relative;
-  overflow: hidden;
-  width: 144px;
-  height: 144px;
+const ItemImage = styled.div<{ imageUrl: string }>`
+  padding-top: calc(100% - 2px);
   background: ${({ theme }) => theme.palette.grey2};
-  box-sizing: border-box;
-
+  background-image: url(${({ imageUrl }) => imageUrl});
+  border: 1px solid transparent;
   &:hover {
     border: 1px solid ${({ theme }) => theme.palette.black};
   }
-  img {
-    object-fit: cover;
-  }
+`;
+
+const Devider = styled.div`
+  height: 1px;
+  width: 100%;
+  background-color: ${({ theme }) => theme.palette.grey2};
+  margin: 14px 0;
 `;

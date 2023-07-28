@@ -7,6 +7,7 @@ import { FlexBox } from "../layout/FlexBox";
 import FilterGroup from "./FilterGroup";
 import { FilterProvider } from "./useFilterContext";
 import { css } from "@emotion/react";
+import { useMediaQuery } from "react-responsive";
 
 export interface FilterProps {
   title: string;
@@ -25,6 +26,10 @@ const Filter = ({
 }: FilterProps) => {
   const [open, setOpen] = useState(defaultOpen);
 
+  const isMobile = useMediaQuery({
+    query: "(max-width:767px)",
+  });
+
   return (
     <Wrapper>
       <Header justify={"space-between"}>
@@ -33,9 +38,15 @@ const Filter = ({
             {title}
           </Media.Txt>
         </legend>
-        {folding && <Handler open={open} onClick={() => setOpen(!open)} />}
+        {(isMobile || folding) && (
+          <Handler open={open} onClick={() => setOpen(!open)} />
+        )}
       </Header>
-      <FoldContainer open={open} count={Children.count(children)}>
+      <FoldContainer
+        open={open}
+        count={Children.count(children)}
+        folding={folding}
+      >
         <FilterProvider>
           <FilterGroup onChange={onChange}>{children}</FilterGroup>
         </FilterProvider>
@@ -59,9 +70,19 @@ const Header = styled(FlexBox)`
   }
 `;
 
-const FoldContainer = styled.div<{ open: boolean; count: number }>`
-  max-height: ${({ open, count }) => (open ? `${count * 100}px ` : `0px`)};
-  transition: all 0.1s cubic-bezier(0.465, 0.183, 0.153, 0.946);
+const FoldContainer = styled.div<{
+  open: boolean;
+  count: number;
+  folding: boolean;
+}>`
+  ${media.mobile} {
+    max-height: ${({ open, count }) => (open ? `${count * 100}px ` : `0px`)};
+  }
+  ${media.pc} {
+    max-height: ${({ open, count, folding }) =>
+      folding ? (open ? `${count * 100}px ` : `0px`) : "100%"};
+  }
+  transition: all 0.2s cubic-bezier(0.465, 0.183, 0.153, 0.946);
   overflow: hidden;
 `;
 
