@@ -3,6 +3,9 @@ import { useMediaQuery } from "react-responsive";
 import { Spacing as BaseSpacing } from "./Spacing";
 import { Padding as BasePadding, PaddingProps, PaddingSize } from "./Padding";
 import React from "react";
+import { Txt as BaseTxt } from "~/components/atoms/Txt";
+import { TextProps } from "../atoms/Txt";
+import { typo } from "~/styles/typo";
 
 const Mobile = ({ children }: { children: ReactNode }) => {
   const isMobile = useMediaQuery({
@@ -53,4 +56,29 @@ const Padding = ({
   );
 };
 
-export default { Mobile, PC, Spacing, Padding };
+const Txt = ({
+  mobile,
+  pc,
+  children,
+  ...rest
+}: Omit<TextProps, "typo"> & {
+  mobile: keyof typeof typo;
+  pc: keyof typeof typo;
+}) => {
+  return (
+    <>
+      <PC>
+        <BaseTxt typo={pc} {...rest}>
+          {children}
+        </BaseTxt>
+      </PC>
+      <Mobile>
+        <BaseTxt typo={mobile} {...rest}>
+          {children}
+        </BaseTxt>
+      </Mobile>
+    </>
+  );
+};
+
+export default { Mobile, PC, Spacing, Padding, Txt };
