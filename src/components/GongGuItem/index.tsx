@@ -3,7 +3,7 @@ import Media from "../layout/Media";
 import { GongGuItemMobile } from "./GongGuItemMobile";
 import { GongGuItemRow } from "./GongGuItemRow";
 import { GongGuItemCol } from "./GongGuItemCol";
-import GongGuItemWide from "./GongGuItemWIde";
+import GongGuItemWide from "./GongGuItemWide";
 
 export type GongGuItemVarients = "row" | "col" | "wide";
 export interface GongGuItemProps extends ComponentProps<"div"> {
