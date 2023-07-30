@@ -3,6 +3,7 @@ import Media from "../layout/Media";
 import { GongGuItemMobile } from "./GongGuItemMobile";
 import { GongGuItemRow } from "./GongGuItemRow";
 import { GongGuItemCol } from "./GongGuItemCol";
+import GongGuItemWide from "./GongGuItemWide";
 
 export type GongGuItemVarients = "row" | "col" | "wide";
 export interface GongGuItemProps extends ComponentProps<"div"> {
@@ -20,7 +21,7 @@ const gongGuItemMap: Record<
 > = {
   row: (props: GongGuItemProps) => <GongGuItemRow {...props} />,
   col: (props: GongGuItemProps) => <GongGuItemCol {...props} />,
-  wide: () => <></>,
+  wide: (props: GongGuItemProps) => <GongGuItemWide {...props} />,
 };
 
 const GongGuItem = ({
