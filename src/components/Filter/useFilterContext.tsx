@@ -5,6 +5,7 @@ type FilterContextType = {
   setCheckedValue: (newValue: string[]) => void;
   onChange?: (name: string, value: string[]) => void;
   name: string;
+  type: "checkbox" | "radio";
 };
 
 const defaultState: FilterContextType = {
@@ -12,6 +13,7 @@ const defaultState: FilterContextType = {
   setCheckedValue: () => {},
   onChange: () => {},
   name: "",
+  type: "checkbox",
 };
 
 const FilterContext = createContext<FilterContextType>(defaultState);
@@ -21,17 +23,19 @@ const FilterProvider = ({
   defaultChecked = [],
   name,
   onChange,
+  type = "checkbox",
 }: {
   children: ReactNode;
   defaultChecked?: string[];
   name: string;
   onChange?: (name: string, value: string[]) => void;
+  type: "checkbox" | "radio";
 }) => {
   const [checkedValue, setCheckedValue] = useState<string[]>(defaultChecked);
 
   return (
     <FilterContext.Provider
-      value={{ checkedValue, setCheckedValue, name, onChange }}
+      value={{ checkedValue, setCheckedValue, name, onChange, type }}
     >
       {children}
     </FilterContext.Provider>

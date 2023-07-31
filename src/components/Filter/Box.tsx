@@ -16,6 +16,7 @@ export interface FilterProps {
   defaultCheckedValue?: string[];
   children?: ReactNode;
   onChange?: (name: string, value: string[]) => void;
+  type?: "radio" | "checkbox";
 }
 
 const Box = ({
@@ -26,6 +27,7 @@ const Box = ({
   defaultCheckedValue = [],
   children,
   onChange,
+  type = "checkbox",
 }: FilterProps) => {
   const [open, setOpen] = useState(defaultOpen);
 
@@ -35,7 +37,10 @@ const Box = ({
 
   return (
     <Wrapper>
-      <Header justify={"space-between"}>
+      <Header
+        justify={"space-between"}
+        onClick={() => isMobile && setOpen(!open)}
+      >
         <legend>
           <Media.Txt mobile="label.2" pc="heading.4">
             {title}
@@ -54,6 +59,7 @@ const Box = ({
           defaultChecked={defaultCheckedValue}
           name={name}
           onChange={onChange}
+          type={type}
         >
           <FilterGroup direction={"column"} gap={12} align={"flex-start"}>
             {children}
@@ -96,6 +102,7 @@ const FoldContainer = styled.div<{
 `;
 
 const Handler = styled(Chevron)<{ open: boolean }>`
+  cursor: pointer;
   ${({ open }) =>
     open &&
     css`

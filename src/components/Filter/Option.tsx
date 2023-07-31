@@ -1,28 +1,27 @@
 import styled from "@emotion/styled";
 import { ReactComponent as CheckboxTrueIcon } from "~/assets/icon/check-true.svg";
 import { ReactComponent as CheckboxFalseIcon } from "~/assets/icon/check-false.svg";
-import { ComponentProps, useState } from "react";
+import { ComponentProps } from "react";
 import { useFilterContext } from "./useFilterContext";
 import { FlexBox } from "../layout/FlexBox";
+import React from "react";
 
 export interface OptionProps extends ComponentProps<"input"> {
   value: string;
 }
 
 const Option = ({ children, value }: OptionProps) => {
-  const { checkedValue, setCheckedValue, name, onChange } = useFilterContext();
-  const [checked, setChecked] = useState(checkedValue.includes(value));
+  const { checkedValue, setCheckedValue, name, onChange, type } =
+    useFilterContext();
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleChangeCheckbox = (e: React.ChangeEvent<HTMLInputElement>) => {
     const value = e.target.value;
     if (checkedValue.includes(value)) {
-      setChecked(false);
       const newValue = checkedValue.filter((v) => v !== value);
 
       setCheckedValue(newValue);
       onChange?.(name, newValue);
     } else {
-      setChecked(true);
       const newValue = [...checkedValue, value];
 
       setCheckedValue(newValue);
@@ -30,26 +29,45 @@ const Option = ({ children, value }: OptionProps) => {
     }
   };
 
+  const handleClickRadio = (e: React.MouseEvent<HTMLInputElement>) => {
+    const value = e.currentTarget.value;
+
+    if (checkedValue.includes(value)) {
+      setCheckedValue([]);
+      onChange?.(name, []);
+    } else {
+      setCheckedValue([value]);
+      onChange?.(name, [value]);
+    }
+  };
+
   return (
     <Wrapper>
       <CheckBoxInput
-        type="checkbox"
+        type={type}
         id={value}
         value={value}
         name={name}
-        onChange={handleChange}
+        onChange={type === "checkbox" ? handleChangeCheckbox : undefined}
+        onClick={type === "radio" ? handleClickRadio : undefined}
       />
       <label htmlFor={value}>
         <Container gap={8}>
-          {checked ? <CheckboxTrueIcon /> : <CheckboxFalseIcon />}
-          <LabelText checked={checked}>{children}</LabelText>
+          {checkedValue.includes(value) ? (
+            <CheckboxTrueIcon />
+          ) : (
+            <CheckboxFalseIcon />
+          )}
+          <LabelText checked={checkedValue.includes(value)}>
+            {children}
+          </LabelText>
         </Container>
       </label>
     </Wrapper>
   );
 };
 
-export default Option;
+export default React.memo(Option);
 
 const Wrapper = styled(FlexBox)``;
 
