@@ -2,7 +2,6 @@ import styled from "@emotion/styled";
 import { Col, Row } from "antd/es/grid";
 import { useState } from "react";
 import Filter from "~/components/Filter";
-import CheckBox from "~/components/Filter/CheckBox";
 import GongGuItem from "~/components/GongGuItem";
 import { Divider } from "~/components/atoms/Divider";
 import { FlexBox } from "~/components/layout/FlexBox";
@@ -31,18 +30,18 @@ const Explore = () => {
 
           <Row gutter={24}>
             <Col xs={24} sm={24} md={6}>
-              <Filter title="카테고리" defaultOpen={false}>
-                <CheckBox value="의류">의류</CheckBox>
-                <CheckBox value="잡화">잡화</CheckBox>
-                <CheckBox value="잡화">문구</CheckBox>
-                <CheckBox value="잡화">기타</CheckBox>
-              </Filter>
+              <Filter.Box title="카테고리" defaultOpen={false} name="category">
+                <Filter.Option value="의류">의류</Filter.Option>
+                <Filter.Option value="잡화">잡화</Filter.Option>
+                <Filter.Option value="잡화">문구</Filter.Option>
+                <Filter.Option value="잡화">기타</Filter.Option>
+              </Filter.Box>
               <Media.Spacing mobile={8} pc={20} />
-              <Filter title="진행사항" defaultOpen={false}>
-                <CheckBox value="진행중">진행중</CheckBox>
-                <CheckBox value="마감 임박">마감 임박</CheckBox>
-                <CheckBox value="마감 완료">마감 완료</CheckBox>
-              </Filter>
+              <Filter.Box title="진행사항" defaultOpen={false} name="progress">
+                <Filter.Option value="진행중">진행중</Filter.Option>
+                <Filter.Option value="마감 임박">마감 임박</Filter.Option>
+                <Filter.Option value="마감 완료">마감 완료</Filter.Option>
+              </Filter.Box>
             </Col>
             <Col xs={24} sm={24} md={18}>
               <Media.Spacing mobile={32} pc={0} />
@@ -69,6 +68,7 @@ const Explore = () => {
                 <GongGuItem
                   varients="col"
                   data={{
+                    id: 1,
                     category: "의류",
                     title:
                       "공구제목 공구제목 공구제목 공구제목 공구제목 공구제목 공구제목 공구제목",
@@ -80,6 +80,7 @@ const Explore = () => {
                 <GongGuItem
                   varients="col"
                   data={{
+                    id: 1,
                     category: "의류",
                     title:
                       "공구제목 공구제목 공구제목 공구제목 공구제목 공구제목 공구제목 공구제목",
@@ -91,6 +92,7 @@ const Explore = () => {
                 <GongGuItem
                   varients="col"
                   data={{
+                    id: 1,
                     category: "의류",
                     title:
                       "공구제목 공구제목 공구제목 공구제목 공구제목 공구제목 공구제목 공구제목",
@@ -102,6 +104,7 @@ const Explore = () => {
                 <GongGuItem
                   varients="col"
                   data={{
+                    id: 1,
                     category: "의류",
                     title:
                       "공구제목 공구제목 공구제목 공구제목 공구제목 공구제목 공구제목 공구제목",
@@ -113,6 +116,7 @@ const Explore = () => {
                 <GongGuItem
                   varients="col"
                   data={{
+                    id: 1,
                     category: "의류",
                     title:
                       "공구제목 공구제목 공구제목 공구제목 공구제목 공구제목 공구제목 공구제목",
@@ -124,6 +128,7 @@ const Explore = () => {
                 <GongGuItem
                   varients="col"
                   data={{
+                    id: 1,
                     category: "의류",
                     title:
                       "공구제목 공구제목 공구제목 공구제목 공구제목 공구제목 공구제목 공구제목",

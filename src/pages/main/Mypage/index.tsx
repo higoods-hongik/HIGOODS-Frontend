@@ -26,6 +26,7 @@ const Mypage = () => {
           <GongGuItem
             varients="row"
             data={{
+              id: 1,
               category: "의류",
               title:
                 "공구제목 공구제목 공구제목 공구제목 공구제목 공구제목 공구제목 공구제목",
@@ -36,6 +37,7 @@ const Mypage = () => {
           <GongGuItem
             varients="row"
             data={{
+              id: 1,
               category: "의류",
               title:
                 "공구제목 공구제목 공구제목 공구제목 공구제목 공구제목 공구제목 공구제목",
@@ -46,6 +48,7 @@ const Mypage = () => {
           <GongGuItem
             varients="row"
             data={{
+              id: 1,
               category: "의류",
               title:
                 "공구제목 공구제목 공구제목 공구제목 공구제목 공구제목 공구제목 공구제목",

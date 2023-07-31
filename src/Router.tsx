@@ -15,6 +15,7 @@ const Dashboard = React.lazy(() => import("~/pages/admin/Dashboard"));
 const Notice = React.lazy(() => import("~/pages/admin/Notice"));
 const OrderForm = React.lazy(() => import("~/pages/admin/OrderForm"));
 const Delivery = React.lazy(() => import("~/pages/admin/Delivery"));
+const Detail = React.lazy(() => import("~/pages/main/Detail"));
 
 const router = createBrowserRouter([
   {
@@ -26,6 +27,7 @@ const router = createBrowserRouter([
       { path: "/series", element: <Series /> },
       { path: "/demand", element: <Demand /> },
       { path: "/mypage", element: <Mypage /> },
+      { path: "/goods/:id", element: <Detail /> },
       {
         path: "/admin",
         element: <AdminPage />,

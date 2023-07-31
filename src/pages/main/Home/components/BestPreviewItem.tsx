@@ -1,20 +1,17 @@
 import styled from "@emotion/styled";
+import { Link } from "react-router-dom";
+import { GongGuItemProps } from "~/components/GongGuItem";
 import { Txt } from "~/components/atoms/Txt";
 import { FlexBox } from "~/components/layout/FlexBox";
-
-export interface BestPreviewProps {
-  imageUrl?: string;
-  title: string;
-  description: string;
-}
 
 const BestPreviewItem = ({
   imageUrl,
   title,
   description,
-}: BestPreviewProps) => {
+  id,
+}: GongGuItemProps) => {
   return (
-    <Wrapper>
+    <Wrapper to={`/goods/${id}`}>
       <ItemImage>
         <img src={imageUrl} />
       </ItemImage>
@@ -37,7 +34,7 @@ const BestPreviewItem = ({
 
 export default BestPreviewItem;
 
-const Wrapper = styled.div`
+const Wrapper = styled(Link)`
   width: 100%;
 `;
 

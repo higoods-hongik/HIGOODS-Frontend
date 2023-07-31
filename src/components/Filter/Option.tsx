@@ -10,17 +10,23 @@ export interface OptionProps extends ComponentProps<"input"> {
 }
 
 const Option = ({ children, value }: OptionProps) => {
-  const { checkedValue, setCheckedValue } = useFilterContext();
+  const { checkedValue, setCheckedValue, name, onChange } = useFilterContext();
   const [checked, setChecked] = useState(checkedValue.includes(value));
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const changedValue = e.target.value;
-    if (checkedValue.includes(changedValue)) {
+    const value = e.target.value;
+    if (checkedValue.includes(value)) {
       setChecked(false);
-      setCheckedValue(checkedValue.filter((v) => v !== changedValue));
+      const newValue = checkedValue.filter((v) => v !== value);
+
+      setCheckedValue(newValue);
+      onChange?.(name, newValue);
     } else {
       setChecked(true);
-      setCheckedValue([...checkedValue, changedValue]);
+      const newValue = [...checkedValue, value];
+
+      setCheckedValue(newValue);
+      onChange?.(name, newValue);
     }
   };
 
@@ -30,6 +36,7 @@ const Option = ({ children, value }: OptionProps) => {
         type="checkbox"
         id={value}
         value={value}
+        name={name}
         onChange={handleChange}
       />
       <label htmlFor={value}>

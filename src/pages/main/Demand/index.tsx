@@ -2,7 +2,6 @@ import styled from "@emotion/styled";
 import { Col, Row } from "antd/es/grid";
 import { useState } from "react";
 import Filter from "~/components/Filter";
-import CheckBox from "~/components/Filter/CheckBox";
 import GongGuItem from "~/components/GongGuItem";
 import { Divider } from "~/components/atoms/Divider";
 import { FlexBox } from "~/components/layout/FlexBox";
@@ -31,12 +30,12 @@ const Demand = () => {
 
           <Row gutter={24}>
             <Col xs={24} sm={24} md={6}>
-              <Filter title="카테고리">
-                <CheckBox value="의류">의류</CheckBox>
-                <CheckBox value="잡화">잡화</CheckBox>
-                <CheckBox value="잡화">문구</CheckBox>
-                <CheckBox value="잡화">기타</CheckBox>
-              </Filter>
+              <Filter.Box title="카테고리" name="category">
+                <Filter.Option value="의류">의류</Filter.Option>
+                <Filter.Option value="잡화">잡화</Filter.Option>
+                <Filter.Option value="잡화">문구</Filter.Option>
+                <Filter.Option value="잡화">기타</Filter.Option>
+              </Filter.Box>
             </Col>
             <Col xs={24} sm={24} md={18}>
               <Media.Spacing mobile={32} pc={0} />
@@ -63,6 +62,7 @@ const Demand = () => {
                 <GongGuItem
                   varients="wide"
                   data={{
+                    id: 1,
                     category: "의류",
                     title:
                       "공구제목 공구제목 공구제목 공구제목 공구제목 공구제목 공구제목 공구제목공구제목 공구제목 공구제목 공구제목 공구제목 공구제목 공구제목 공구제목",
@@ -74,6 +74,7 @@ const Demand = () => {
                 <GongGuItem
                   varients="wide"
                   data={{
+                    id: 1,
                     category: "의류",
                     title:
                       "공구제목 공구제목 공구제목 공구제목 공구제목 공구제목 공구제목 공구제목",
@@ -85,6 +86,7 @@ const Demand = () => {
                 <GongGuItem
                   varients="wide"
                   data={{
+                    id: 1,
                     category: "의류",
                     title:
                       "공구제목 공구제목 공구제목 공구제목 공구제목 공구제목 공구제목 공구제목",
@@ -96,6 +98,7 @@ const Demand = () => {
                 <GongGuItem
                   varients="wide"
                   data={{
+                    id: 1,
                     category: "의류",
                     title:
                       "공구제목 공구제목 공구제목 공구제목 공구제목 공구제목 공구제목 공구제목",

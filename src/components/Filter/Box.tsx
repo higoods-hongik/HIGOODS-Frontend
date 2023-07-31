@@ -4,22 +4,23 @@ import { media } from "~/styles/theme";
 import { ReactComponent as Chevron } from "~/assets/icon/chevron-down.svg";
 import Media from "../layout/Media";
 import { FlexBox } from "../layout/FlexBox";
-import FilterGroup from "./FilterGroup";
 import { FilterProvider } from "./useFilterContext";
 import { css } from "@emotion/react";
 import { useMediaQuery } from "react-responsive";
 
 export interface FilterProps {
   title: string;
+  name: string;
   folding?: boolean;
   defaultOpen?: boolean;
   defaultCheckedValue?: string[];
   children?: ReactNode;
-  onChange?: (value: string[]) => void;
+  onChange?: (name: string, value: string[]) => void;
 }
 
 const Box = ({
   title,
+  name,
   folding = false,
   defaultOpen = true,
   defaultCheckedValue = [],
@@ -49,8 +50,14 @@ const Box = ({
         count={Children.count(children)}
         folding={folding}
       >
-        <FilterProvider defaultChecked={defaultCheckedValue}>
-          <FilterGroup onChange={onChange}>{children}</FilterGroup>
+        <FilterProvider
+          defaultChecked={defaultCheckedValue}
+          name={name}
+          onChange={onChange}
+        >
+          <FilterGroup direction={"column"} gap={12} align={"flex-start"}>
+            {children}
+          </FilterGroup>
         </FilterProvider>
       </FoldContainer>
     </Wrapper>
@@ -95,4 +102,8 @@ const Handler = styled(Chevron)<{ open: boolean }>`
       transform: rotate(180deg);
     `}
   transition: all 0.2s cubic-bezier(0.465, 0.183, 0.153, 0.946);
+`;
+
+const FilterGroup = styled(FlexBox)`
+  padding: 12px 0;
 `;
