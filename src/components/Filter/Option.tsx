@@ -5,11 +5,11 @@ import { ComponentProps, useState } from "react";
 import { useFilterContext } from "./useFilterContext";
 import { FlexBox } from "../layout/FlexBox";
 
-export interface CheckBoxProps extends ComponentProps<"input"> {
+export interface OptionProps extends ComponentProps<"input"> {
   value: string;
 }
 
-const CheckBox = ({ children, value }: CheckBoxProps) => {
+const Option = ({ children, value }: OptionProps) => {
   const { checkedValue, setCheckedValue } = useFilterContext();
   const [checked, setChecked] = useState(false);
 
@@ -42,7 +42,7 @@ const CheckBox = ({ children, value }: CheckBoxProps) => {
   );
 };
 
-export default CheckBox;
+export default Option;
 
 const Wrapper = styled(FlexBox)``;
 
