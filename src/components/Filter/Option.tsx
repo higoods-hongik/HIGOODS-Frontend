@@ -11,7 +11,7 @@ export interface OptionProps extends ComponentProps<"input"> {
 
 const Option = ({ children, value }: OptionProps) => {
   const { checkedValue, setCheckedValue } = useFilterContext();
-  const [checked, setChecked] = useState(false);
+  const [checked, setChecked] = useState(checkedValue.includes(value));
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const changedValue = e.target.value;

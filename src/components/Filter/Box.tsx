@@ -13,6 +13,7 @@ export interface FilterProps {
   title: string;
   folding?: boolean;
   defaultOpen?: boolean;
+  defaultCheckedValue?: string[];
   children?: ReactNode;
   onChange?: (value: string[]) => void;
 }
@@ -21,6 +22,7 @@ const Box = ({
   title,
   folding = false,
   defaultOpen = true,
+  defaultCheckedValue = [],
   children,
   onChange,
 }: FilterProps) => {
@@ -47,7 +49,7 @@ const Box = ({
         count={Children.count(children)}
         folding={folding}
       >
-        <FilterProvider>
+        <FilterProvider defaultChecked={defaultCheckedValue}>
           <FilterGroup onChange={onChange}>{children}</FilterGroup>
         </FilterProvider>
       </FoldContainer>
