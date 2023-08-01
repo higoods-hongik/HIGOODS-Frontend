@@ -29,8 +29,9 @@ const HomePage = () => {
                 <BestPreviewItem
                   title="공구제목공구제목공구제목공구제목공구제목공구제목공구제목공구제목"
                   description="공구설명공구설명"
+                  id={1}
                 />
-                <BestPreviewItem title="asdf" description="asdsadf" />
+                <BestPreviewItem title="asdf" description="asdsadf" id={1} />
               </BestPreviewItemContainer>
             </MobileContainer>
             <Media.Spacing mobile={35} pc={57} />
@@ -45,6 +46,7 @@ const HomePage = () => {
                 <GongGuItem
                   varients="row"
                   data={{
+                    id: 1,
                     category: "의류",
                     title:
                       "공구제목 공구제목 공구제목 공구제목 공구제목 공구제목 공구제목 공구제목",
@@ -55,6 +57,7 @@ const HomePage = () => {
                 <GongGuItem
                   varients="row"
                   data={{
+                    id: 1,
                     category: "의류",
                     title:
                       "공구제목 공구제목 공구제목 공구제목 공구제목 공구제목 공구제목 공구제목",
@@ -65,6 +68,7 @@ const HomePage = () => {
                 <GongGuItem
                   varients="row"
                   data={{
+                    id: 1,
                     category: "의류",
                     title:
                       "공구제목 공구제목 공구제목 공구제목 공구제목 공구제목 공구제목 공구제목",
@@ -75,6 +79,7 @@ const HomePage = () => {
                 <GongGuItem
                   varients="row"
                   data={{
+                    id: 1,
                     category: "의류",
                     title:
                       "공구제목 공구제목 공구제목 공구제목 공구제목 공구제목 공구제목 공구제목",

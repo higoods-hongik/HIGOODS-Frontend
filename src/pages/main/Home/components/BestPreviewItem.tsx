@@ -1,23 +1,19 @@
 import styled from "@emotion/styled";
+import { Link } from "react-router-dom";
+import { GongGuItemProps } from "~/components/GongGuItem";
+import SquareImage from "~/components/atoms/SquareImage";
 import { Txt } from "~/components/atoms/Txt";
 import { FlexBox } from "~/components/layout/FlexBox";
-
-export interface BestPreviewProps {
-  imageUrl?: string;
-  title: string;
-  description: string;
-}
 
 const BestPreviewItem = ({
   imageUrl,
   title,
   description,
-}: BestPreviewProps) => {
+  id,
+}: GongGuItemProps) => {
   return (
-    <Wrapper>
-      <ItemImage>
-        <img src={imageUrl} />
-      </ItemImage>
+    <Wrapper to={`/goods/${id}`}>
+      <SquareImage imageUrl={imageUrl} />
       <Contents
         direction={"column"}
         gap={8}
@@ -37,19 +33,8 @@ const BestPreviewItem = ({
 
 export default BestPreviewItem;
 
-const Wrapper = styled.div`
+const Wrapper = styled(Link)`
   width: 100%;
-`;
-
-const ItemImage = styled.div`
-  position: relative;
-  padding-top: 100%;
-  overflow: hidden;
-  width: 100%;
-  background: ${({ theme }) => theme.palette.grey2};
-  img {
-    object-fit: cover;
-  }
 `;
 
 const Contents = styled(FlexBox)`

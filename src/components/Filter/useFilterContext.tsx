@@ -3,17 +3,48 @@ import { createContext, ReactNode, useContext, useState } from "react";
 type FilterContextType = {
   checkedValue: string[];
   setCheckedValue: (newValue: string[]) => void;
+  onChange?: (name: string, value: string[]) => void;
+  name: string;
+  type: "checkbox" | "radio";
 };
 
-const defaultState = { checkedValue: [], setCheckedValue: () => {} };
+const defaultState: FilterContextType = {
+  checkedValue: [],
+  setCheckedValue: () => {},
+  onChange: () => {},
+  name: "",
+  type: "checkbox",
+};
 
 const FilterContext = createContext<FilterContextType>(defaultState);
 
-const FilterProvider = ({ children }: { children: ReactNode }) => {
-  const [checkedValue, setCheckedValue] = useState<string[]>([]);
+const FilterProvider = ({
+  children,
+  defaultChecked = [],
+  name,
+  onChange,
+  outerValue,
+  type = "checkbox",
+}: {
+  children: ReactNode;
+  defaultChecked?: string[];
+  name: string;
+  onChange?: (name: string, value: string[]) => void;
+  outerValue?: string[];
+  type: "checkbox" | "radio";
+}) => {
+  const [checkedValue, setCheckedValue] = useState<string[]>(defaultChecked);
 
   return (
-    <FilterContext.Provider value={{ checkedValue, setCheckedValue }}>
+    <FilterContext.Provider
+      value={{
+        checkedValue: outerValue ? outerValue : checkedValue,
+        setCheckedValue,
+        name,
+        onChange,
+        type,
+      }}
+    >
       {children}
     </FilterContext.Provider>
   );

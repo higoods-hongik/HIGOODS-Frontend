@@ -11,7 +11,7 @@ export interface DividerProps extends HTMLAttributes<HTMLDivElement> {
 
 export const Divider = ({ padding, color, ...props }: DividerProps) => {
   return (
-    <Padding size={padding} {...props}>
+    <Padding size={padding} fullWidth {...props}>
       <div
         css={{
           width: "100%",
