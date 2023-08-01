@@ -33,8 +33,8 @@ const Explore = () => {
               <Filter.Box title="카테고리" defaultOpen={false} name="category">
                 <Filter.Option value="의류">의류</Filter.Option>
                 <Filter.Option value="잡화">잡화</Filter.Option>
-                <Filter.Option value="잡화">문구</Filter.Option>
-                <Filter.Option value="잡화">기타</Filter.Option>
+                <Filter.Option value="문구">문구</Filter.Option>
+                <Filter.Option value="기타">기타</Filter.Option>
               </Filter.Box>
               <Media.Spacing mobile={8} pc={20} />
               <Filter.Box title="진행사항" defaultOpen={false} name="progress">

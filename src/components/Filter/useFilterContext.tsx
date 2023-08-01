@@ -23,19 +23,27 @@ const FilterProvider = ({
   defaultChecked = [],
   name,
   onChange,
+  outerValue,
   type = "checkbox",
 }: {
   children: ReactNode;
   defaultChecked?: string[];
   name: string;
   onChange?: (name: string, value: string[]) => void;
+  outerValue?: string[];
   type: "checkbox" | "radio";
 }) => {
   const [checkedValue, setCheckedValue] = useState<string[]>(defaultChecked);
 
   return (
     <FilterContext.Provider
-      value={{ checkedValue, setCheckedValue, name, onChange, type }}
+      value={{
+        checkedValue: outerValue ? outerValue : checkedValue,
+        setCheckedValue,
+        name,
+        onChange,
+        type,
+      }}
     >
       {children}
     </FilterContext.Provider>

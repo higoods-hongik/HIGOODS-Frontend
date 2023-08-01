@@ -1,3 +1,4 @@
+import { css } from "@emotion/react";
 import styled from "@emotion/styled";
 import { ComponentProps } from "react";
 import { keyOfPalette, keyOfTypo } from "~/styles/theme";
@@ -79,8 +80,13 @@ const Container = styled.button<Props>`
   color: ${({ theme, color }) => theme.palette[TEXT_COLOR[color]]};
   background-color: ${({ theme, color }) =>
     isLine(color) ? "transparent" : theme.palette[BACKGROUND_COLOR[color]]};
-  border-color: ${({ theme, color }) =>
-    isLine(color) ? theme.palette[BACKGROUND_COLOR[color]] : "transparent"};
+
+  ${({ theme, color }) =>
+    isLine(color) &&
+    css`
+      border: 1px solid ${theme.palette[BACKGROUND_COLOR[color]]};
+    `}
+
   width: ${({ fullWidth, width }) =>
     fullWidth ? "100%" : width ? `${width}px` : "auto"};
 
@@ -89,5 +95,8 @@ const Container = styled.button<Props>`
     `${SIZE_MAP[size].padding[0]}px ${SIZE_MAP[size].padding[1]}px`};
   ${({ theme, size }) => theme.typo[SIZE_MAP[size].typo]}
 
-  flex-shrink:0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
 `;

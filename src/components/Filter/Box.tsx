@@ -15,6 +15,7 @@ export interface FilterProps {
   defaultOpen?: boolean;
   defaultCheckedValue?: string[];
   children?: ReactNode;
+  value?: string[];
   onChange?: (name: string, value: string[]) => void;
   type?: "radio" | "checkbox";
 }
@@ -26,6 +27,7 @@ const Box = ({
   defaultOpen = true,
   defaultCheckedValue = [],
   children,
+  value,
   onChange,
   type = "checkbox",
 }: FilterProps) => {
@@ -60,6 +62,7 @@ const Box = ({
           name={name}
           onChange={onChange}
           type={type}
+          outerValue={value}
         >
           <FilterGroup direction={"column"} gap={12} align={"flex-start"}>
             {children}
