@@ -8,10 +8,12 @@ import Media from "~/components/layout/Media";
 import { media } from "~/styles/theme";
 import Button from "~/components/atoms/Button";
 import { useMediaQuery } from "react-responsive";
+import { useNavigate } from "react-router-dom";
 
 type OptionType = Record<string, string[]>;
 
 const SelectOption = () => {
+  const navigate = useNavigate();
   const [option, setOption] = useState<OptionType>({
     사이즈: [],
     수령: [],
@@ -87,7 +89,11 @@ const SelectOption = () => {
         <Button size={isMobile ? "md" : "lg"} color="red20">
           스크랩하기
         </Button>
-        <Button size={isMobile ? "md" : "lg"} color="red">
+        <Button
+          size={isMobile ? "md" : "lg"}
+          color="red"
+          onClick={() => navigate("start")}
+        >
           참여하기
         </Button>
       </ButtonSet>
