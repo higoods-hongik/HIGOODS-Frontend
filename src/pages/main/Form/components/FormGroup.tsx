@@ -36,5 +36,7 @@ const StyledInputGroup = styled.div`
 
 const Wrapper = styled.div`
   padding: 36px 0;
-  border-bottom: 1px solid ${({ theme }) => theme.palette.grey2};
+  &:not(:last-of-type) {
+    border-bottom: 1px solid ${({ theme }) => theme.palette.grey2};
+  }
 `;

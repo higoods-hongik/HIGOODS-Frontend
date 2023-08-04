@@ -12,7 +12,7 @@ interface FormSwitchProps extends ComponentProps<"input"> {
 }
 
 const FormSwitch = forwardRef<HTMLInputElement, FormSwitchProps>(
-  ({ label, name, value, ...rest }: FormSwitchProps, ref) => {
+  ({ label, name, value, checked, ...rest }: FormSwitchProps, ref) => {
     const { watch } = useFormContext();
     return (
       <>
@@ -23,11 +23,12 @@ const FormSwitch = forwardRef<HTMLInputElement, FormSwitchProps>(
             value={value}
             name={name}
             ref={ref}
+            checked={checked}
             {...rest}
           />
           <label htmlFor={value}>
             <Container>
-              {watch(name) === value ? (
+              {watch(name) === value || checked ? (
                 <CheckboxTrueIcon />
               ) : (
                 <CheckboxFalseIcon />

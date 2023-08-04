@@ -4,12 +4,14 @@ import { ComponentProps, forwardRef } from "react";
 
 interface InputProps extends ComponentProps<"input"> {
   value?: string;
+  fullWidth?: boolean;
 }
 
 const Input = forwardRef<HTMLInputElement, InputProps>(
-  ({ value, ...rest }: InputProps, ref) => {
+  ({ value, fullWidth = false, ...rest }: InputProps, ref) => {
     return (
       <Wrapper
+        fullWidth={fullWidth}
         type="text"
         value={value}
         isEmpty={!value || value.length === 0}
@@ -22,7 +24,8 @@ const Input = forwardRef<HTMLInputElement, InputProps>(
 
 export default Input;
 
-const Wrapper = styled.input<{ isEmpty: boolean }>`
+const Wrapper = styled.input<{ isEmpty: boolean; fullWidth: boolean }>`
+  width: ${({ fullWidth }) => (fullWidth ? "100%" : "auto")};
   height: 42px;
   box-sizing: border-box;
   border: 1px solid ${({ theme }) => theme.palette.grey6};

@@ -1,37 +1,37 @@
 import styled from "@emotion/styled";
 import { media } from "~/styles/theme";
-import Input from "./Input";
-import { useState } from "react";
-import { useFormContext } from "react-hook-form";
+
+import { ReactNode } from "react";
+import { FlexBox } from "../layout/FlexBox";
+import { useMediaQuery } from "react-responsive";
 
 interface InputRowProps {
   name: string;
   label: string;
   placeholder?: string;
+  children: ReactNode;
+  focused: boolean;
+  isInit: boolean;
 }
 
-const InputRow = ({ label, name, placeholder }: InputRowProps) => {
-  const [focused, setFocused] = useState(false);
-  const { register, watch } = useFormContext();
-  const value = watch(name);
+const CustomRow = ({ label, children, focused, isInit }: InputRowProps) => {
+  const isMobile = useMediaQuery({
+    query: "(max-width:767px)",
+  });
 
   return (
     <FormGrid>
-      <Label isInit={value?.length === 0} focused={focused}>
+      <Label isInit={isInit} focused={focused}>
         {label}
       </Label>
-      <Input
-        value={value}
-        placeholder={placeholder || "내용을 입력하세요"}
-        {...register(name)}
-        onFocus={() => setFocused(true)}
-        onBlur={() => setFocused(false)}
-      />
+      <FlexBox gap={isMobile ? 14 : 24} fullWidth>
+        {children}
+      </FlexBox>
     </FormGrid>
   );
 };
 
-export default InputRow;
+export default CustomRow;
 
 const FormGrid = styled.div`
   width: 100%;
