@@ -12,6 +12,8 @@ import MobileContainer from "~/components/layout/MobileContainer";
 import { Spacing } from "~/components/layout/Spacing";
 import CustomRow from "~/components/InputRow/CustomRow";
 import Input from "~/components/InputRow/Input";
+import { useDaumPostcodePopup } from "react-daum-postcode";
+import { DAUM_ZIP_CODE } from "~/constants/daumZipCode";
 
 const Form = () => {
   const isMobile = useMediaQuery({
@@ -30,7 +32,29 @@ const Form = () => {
     },
   });
 
-  //const onSubmit = (data: any) => console.log(data);
+  const open = useDaumPostcodePopup(DAUM_ZIP_CODE);
+
+  /*   const handleComplete = (data) => {
+    let fullAddress = data.address;
+    let extraAddress = "";
+
+    if (data.addressType === "R") {
+      if (data.bname !== "") {
+        extraAddress += data.bname;
+      }
+      if (data.buildingName !== "") {
+        extraAddress +=
+          extraAddress !== "" ? `, ${data.buildingName}` : data.buildingName;
+      }
+      fullAddress += extraAddress !== "" ? ` (${extraAddress})` : "";
+    }
+
+    console.log(fullAddress); // e.g. '서울 성동구 왕십리로2길 20 (성수동1가)'
+  }; */
+
+  const handleClick = () => {
+    open({ onComplete: (data: any) => console.log(data) });
+  };
 
   return (
     <>
@@ -66,7 +90,7 @@ const Form = () => {
                   type="button"
                   size="md"
                   color="red20"
-                  onClick={() => console.log("//")}
+                  onClick={handleClick}
                 >
                   {isMobile ? "검색하기" : "우편번호 검색"}
                 </Button>
