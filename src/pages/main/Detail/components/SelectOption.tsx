@@ -2,6 +2,8 @@ import { useState } from "react";
 import Filter from "~/components/Filter";
 import { Txt } from "~/components/atoms/Txt";
 import { ReactComponent as ResetIcon } from "~/assets/icon/x-icon.svg";
+import { ReactComponent as CountPlus } from "~/assets/icon/count-plus.svg";
+import { ReactComponent as CountMinus } from "~/assets/icon/count-minus.svg";
 import styled from "@emotion/styled";
 import { FlexBox } from "~/components/layout/FlexBox";
 import Media from "~/components/layout/Media";
@@ -9,6 +11,7 @@ import { media } from "~/styles/theme";
 import Button from "~/components/atoms/Button";
 import { useMediaQuery } from "react-responsive";
 import { useNavigate } from "react-router-dom";
+import { css } from "@emotion/react";
 
 type OptionType = Record<string, string[]>;
 
@@ -18,6 +21,7 @@ const SelectOption = () => {
     사이즈: [],
     수령: [],
   });
+  const [count, setCount] = useState(1);
   const handleChange = (name: string, value: string[]) => {
     setOption({ ...option, [name]: value });
   };
@@ -59,23 +63,30 @@ const SelectOption = () => {
         <Filter.Option value="배송">배송</Filter.Option>
         <Filter.Option value="현장 수령">현장 수령</Filter.Option>
       </Filter.Box>
-      <Media.Spacing pc={30} mobile={24} />
+      <Media.Spacing pc={24} mobile={4} />
       <SelectedOption justify={"space-between"}>
-        <Txt typo="body.1" color={getSelectedText(option) ? "black" : "grey4"}>
-          {getSelectedText(option) || "옵션을 선택해주세요"}
+        <Txt typo="body.1" color={getSelectedText(option) ? "black" : "grey3"}>
+          {getSelectedText(option) ?? "옵션을 선택해주세요"}
         </Txt>
         {getSelectedText(option) && (
-          <ResetIcon
-            onClick={() =>
-              setOption({
-                사이즈: [],
-                수령: [],
-              })
-            }
-          />
+          <FlexBox gap={isMobile ? 25 : 16}>
+            <FlexBox justify={"space-between"} css={css({ width: 70 })}>
+              <CountPlus onClick={() => setCount(Math.max(1, count - 1))} />
+              <Txt typo="body.1">{String(count)}</Txt>
+              <CountMinus onClick={() => setCount(count + 1)} />
+            </FlexBox>
+            <ResetIcon
+              onClick={() =>
+                setOption({
+                  사이즈: [],
+                  수령: [],
+                })
+              }
+            />
+          </FlexBox>
         )}
       </SelectedOption>
-      <Media.Spacing pc={22} mobile={28} />
+      <Media.Spacing pc={40} mobile={44} />
       <Price>
         <Media.Txt mobile="body.2" pc="body.1">
           총 금액
@@ -105,9 +116,12 @@ export default SelectOption;
 
 const SelectedOption = styled(FlexBox)`
   box-sizing: border-box;
-  padding: 0 13px;
-  height: 42px;
-  border: 1px solid ${({ theme }) => theme.palette.black};
+  ${media.pc} {
+    height: 26px;
+  }
+  ${media.mobile} {
+    height: 46px;
+  }
 `;
 const Price = styled.div`
   display: flex;

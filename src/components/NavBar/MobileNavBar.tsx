@@ -4,6 +4,7 @@ import { FlexBox } from "../layout/FlexBox";
 import { NavLink, useNavigate } from "react-router-dom";
 import Hamburger from "hamburger-react";
 import { ReactComponent as SearchIcon } from "~/assets/icon/search-big.svg";
+import { ReactComponent as Logo } from "~/assets/logo.svg";
 import { Modal } from "../Modal";
 import Button from "../atoms/Button";
 import { theme } from "~/styles/theme";
@@ -34,15 +35,15 @@ const MobileNavBar = () => {
             <MobileSearchInput placeholder="검색어를 입력하세요" autoFocus />
           ) : (
             <FlexBox justify={"space-between"} fullWidth>
-              <div
+              <a
                 onClick={() => {
                   navigate("/");
                   toggleNavMenu(false);
                   toggleSearch(false);
                 }}
               >
-                로고
-              </div>
+                <Logo />
+              </a>
               {!isMobileMenuOpen && (
                 <SearchIcon
                   onClick={() => {
@@ -94,15 +95,6 @@ const MobileNavBar = () => {
             }
           >
             수요조사
-          </StyledNavLink>
-          <StyledNavLink
-            to="/series"
-            onClick={() => toggleNavMenu(false)}
-            style={({ isActive }) =>
-              isActive ? { color: theme.palette.red } : {}
-            }
-          >
-            공구 시리즈
           </StyledNavLink>
           <StyledNavLink
             to="/mypage"

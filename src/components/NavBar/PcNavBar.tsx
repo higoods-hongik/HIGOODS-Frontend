@@ -2,6 +2,7 @@ import { css } from "@emotion/react";
 import Button from "../atoms/Button";
 import { useState, useEffect } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
+import { ReactComponent as Logo } from "~/assets/logo.svg";
 import { MenuBar } from "../MenuBar";
 import { FlexBox } from "../layout/FlexBox";
 import SearchInput from "../atoms/SearchInput";
@@ -25,16 +26,16 @@ const PcNavBar = () => {
     <Wrapper>
       <NavBarPcContainer justify={"space-between"} gap={20}>
         <LeftContainer gap={44}>
-          <div
+          <a
             onClick={() => {
               setMenuIndex(-1);
               navigate("/");
             }}
           >
-            로고
-          </div>
+            <Logo />
+          </a>
           <MenuBar
-            menus={["진행중 공구", "수요조사", "공구 시리즈"]}
+            menus={["진행중 공구", "수요조사"]}
             curActiveMenu={menuIndex}
             setCurActiveMenu={setMenuIndex}
             css={css`

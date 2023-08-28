@@ -3,7 +3,6 @@ import styled from "@emotion/styled";
 import { ComponentProps, forwardRef } from "react";
 
 interface InputProps extends ComponentProps<"input"> {
-  value?: string;
   fullWidth?: boolean;
 }
 
@@ -14,7 +13,7 @@ const Input = forwardRef<HTMLInputElement, InputProps>(
         fullWidth={fullWidth}
         type="text"
         value={value}
-        isEmpty={!value || value.length === 0}
+        isEmpty={!value || value === ""}
         ref={ref}
         {...rest}
       />

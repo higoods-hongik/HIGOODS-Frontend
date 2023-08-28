@@ -1,6 +1,10 @@
 import styled from "@emotion/styled";
+import { useNavigate } from "react-router-dom";
 import Button from "~/components/atoms/Button";
+import { FlexBox } from "~/components/layout/FlexBox";
 import Media from "~/components/layout/Media";
+import MobileContainer from "~/components/layout/MobileContainer";
+import PcContainer from "~/components/layout/PcContainer";
 import { Spacing } from "~/components/layout/Spacing";
 import { media } from "~/styles/theme";
 
@@ -11,28 +15,47 @@ interface ProfileProps {
 }
 
 const Profile = ({ name, schoolId, major }: ProfileProps) => {
+  const navigate = useNavigate();
   return (
-    <Wrapper>
-      <ProfileImage />
-      <ProfileInfo>
-        <div className="name">{name}</div>
-        <Spacing size={8} />
-        <div className="id">
-          {schoolId} {major}
-        </div>
-        <Media.Spacing mobile={16} pc={22} />
-        <Media.PC>
-          <Button size="sm" color="red20">
-            내 정보 수정하기
-          </Button>
-        </Media.PC>
-        <Media.Mobile>
-          <Button size="sm" color="red20">
-            수정하기
-          </Button>
-        </Media.Mobile>
-      </ProfileInfo>
-    </Wrapper>
+    <MobileContainer>
+      <PcContainer>
+        <Wrapper>
+          <ProfileImage />
+          <ProfileInfo>
+            <div className="name">{name}</div>
+            <Spacing size={8} />
+            <div className="id">
+              {schoolId} {major}
+            </div>
+            <Media.Spacing mobile={16} pc={22} />
+            <Media.PC>
+              <FlexBox gap={12}>
+                <Button
+                  size="sm"
+                  color="red20"
+                  onClick={() => navigate("/mypage/info")}
+                >
+                  내 정보 수정하기
+                </Button>
+                <Button size="sm" color="lineGray">
+                  로그아웃
+                </Button>
+              </FlexBox>
+            </Media.PC>
+            <Media.Mobile>
+              <FlexBox gap={12}>
+                <Button size="sm" color="red20">
+                  수정하기
+                </Button>
+                <Button size="sm" color="lineGray">
+                  로그아웃
+                </Button>
+              </FlexBox>
+            </Media.Mobile>
+          </ProfileInfo>
+        </Wrapper>
+      </PcContainer>
+    </MobileContainer>
   );
 };
 
@@ -44,14 +67,11 @@ const Wrapper = styled.div`
   margin: auto;
 
   ${media.mobile} {
-    width: 200px;
     gap: 14px;
-    transform: translateX(-12px);
   }
   ${media.pc} {
-    width: 293px;
     gap: 24px;
-    transform: translateX(-93px);
+    transform: translateX(268px);
   }
 `;
 

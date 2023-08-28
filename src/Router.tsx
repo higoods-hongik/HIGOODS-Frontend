@@ -9,6 +9,7 @@ const Explore = React.lazy(() => import("~/pages/main/Explore"));
 const Series = React.lazy(() => import("~/pages/main/Series"));
 const Demand = React.lazy(() => import("~/pages/main/Demand"));
 const Mypage = React.lazy(() => import("~/pages/main/Mypage"));
+const MyInfo = React.lazy(() => import("~/pages/main/Mypage/MyInfo"));
 const BasicInfo = React.lazy(() => import("~/pages/admin/BasicInfo"));
 const Buyer = React.lazy(() => import("~/pages/admin/Buyer"));
 const Dashboard = React.lazy(() => import("~/pages/admin/Dashboard"));
@@ -28,6 +29,7 @@ const router = createBrowserRouter([
       { path: "/series", element: <Series /> },
       { path: "/demand", element: <Demand /> },
       { path: "/mypage", element: <Mypage /> },
+      { path: "/mypage/info", element: <MyInfo /> },
       { path: "/goods/:id", element: <Detail /> },
       { path: "/goods/:id/start", element: <Form /> },
       {
