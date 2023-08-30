@@ -1,9 +1,10 @@
 import styled from "@emotion/styled";
-import { media } from "~/styles/theme";
+import { media, theme } from "~/styles/theme";
 import Input from "./Input";
 import { useState } from "react";
 import { useFormContext } from "react-hook-form";
 import { css } from "@emotion/react";
+import { match } from "ts-pattern";
 
 interface InputRowProps {
   name: string;
@@ -35,30 +36,45 @@ const InputRow = ({ label, name, placeholder, variant }: InputRowProps) => {
 
 export default InputRow;
 
+const formGridPcStyle = css`
+  grid-template-columns: auto 564px;
+  grid-gap: 24px;
+`;
+const formGridMobileStyle = css`
+  grid-template-columns: 1fr;
+  grid-gap: 8px;
+`;
+
 const FormGrid = styled.div<{ variant?: "mobile" | "pc" }>`
   width: 100%;
   display: grid;
-  ${media.pc} {
-    grid-template-columns: auto 564px;
-    grid-gap: 24px;
-  }
-  ${media.mobile} {
-    grid-template-columns: 1fr;
-    grid-gap: 8px;
-  }
 
   ${({ variant }) =>
-    variant
-      ? variant === "pc"
-        ? css`
-            grid-template-columns: auto 564px;
-            grid-gap: 24px;
-          `
-        : css`
-            grid-template-columns: 1fr;
-            grid-gap: 8px;
-          `
-      : css``}
+    match(variant)
+      .with("pc", () => formGridPcStyle)
+      .with("mobile", () => formGridMobileStyle)
+      .otherwise(
+        () => css`
+          ${media.pc} {
+            ${formGridPcStyle}
+          }
+          ${media.mobile} {
+            ${formGridMobileStyle}
+          }
+        `
+      )}
+`;
+
+const labelMobileStyle = (isInit: boolean, focused: boolean) => css`
+  color: ${focused
+    ? theme.palette.grey6
+    : isInit
+    ? theme.palette.grey4
+    : theme.palette.grey6};
+`;
+const labelPcStyle = css`
+  ${theme.typo["heading.4"]}
+  color : ${theme.palette.black};
 `;
 
 const Label = styled.label<{
@@ -67,36 +83,19 @@ const Label = styled.label<{
   variant?: "mobile" | "pc";
 }>`
   margin: auto 0;
-
-  ${media.pc} {
-    ${({ theme }) => theme.typo["heading.4"]}
-    color: ${({ theme }) => theme.palette.black};
-  }
-  ${media.mobile} {
-    ${({ theme }) => theme.typo["label.2"]}
-    color : ${({ theme, isInit, focused }) =>
-      focused
-        ? theme.palette.grey6
-        : isInit
-        ? theme.palette.grey4
-        : theme.palette.grey6};
-  }
   transition: all 0.2s ease;
-
-  ${({ variant, theme, isInit, focused }) =>
-    variant
-      ? variant === "pc"
-        ? css`
-            ${theme.typo["heading.4"]}
-            color : ${theme.palette.black};
-          `
-        : css`
-            ${theme.typo["label.2"]}
-            color : ${focused
-              ? theme.palette.grey6
-              : isInit
-              ? theme.palette.grey4
-              : theme.palette.grey6};
-          `
-      : css``}
+  ${({ variant, isInit, focused }) =>
+    match(variant)
+      .with("pc", () => labelPcStyle)
+      .with("mobile", () => labelMobileStyle(isInit, focused))
+      .otherwise(
+        () => css`
+          ${media.pc} {
+            ${labelPcStyle}
+          }
+          ${media.mobile} {
+            ${labelMobileStyle(isInit, focused)}
+          }
+        `
+      )}
 `;

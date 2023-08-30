@@ -1,7 +1,7 @@
 import { css } from "@emotion/react";
 import { ComponentProps } from "react";
 
-const PcContainer = ({ children }: ComponentProps<"div">) => {
+const PcContainer = ({ children, ...rest }: ComponentProps<"div">) => {
   return (
     <div
       css={css`
@@ -9,6 +9,7 @@ const PcContainer = ({ children }: ComponentProps<"div">) => {
         max-width: 984px;
         margin: auto;
       `}
+      {...rest}
     >
       {children}
     </div>
