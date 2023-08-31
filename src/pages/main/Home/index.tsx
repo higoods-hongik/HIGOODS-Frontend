@@ -13,7 +13,9 @@ import GongGuItem from "~/components/GongGuItem";
 const HomePage = () => {
   return (
     <>
-      <BannerImage />
+      <BannerVideo muted loop autoPlay poster="/poster.png">
+        <source src="/banner-pc.mp4" type="video/mp4" />
+      </BannerVideo>
       <Media.Spacing mobile={35} pc={42} />
       <PcContainer>
         <Row gutter={24}>
@@ -125,11 +127,12 @@ const HomePage = () => {
 
 export default HomePage;
 
-const BannerImage = styled.div`
+const BannerVideo = styled.video`
   width: 100%;
-  height: 433px;
+  object-fit: contain;
   ${media.mobile} {
     height: 375px;
+    object-fit: cover;
   }
   background-color: lightgray;
 `;

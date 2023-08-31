@@ -2,12 +2,13 @@ import styled from "@emotion/styled";
 
 import React, { ComponentProps, useEffect, useState } from "react";
 import { useRef } from "react";
-import { Padding, PaddingSize } from "../../../../components/layout/Padding";
-import { FlexBox } from "../../../../components/layout/FlexBox";
-import { Txt } from "../../../../components/atoms/Txt";
+
 import { css } from "@emotion/react";
 import { media } from "~/styles/theme";
 import useScreenWidth from "~/hooks/useScreenWidth";
+import { Padding, PaddingSize } from "~/components/layout/Padding";
+import { FlexBox } from "~/components/layout/FlexBox";
+import { Txt } from "~/components/atoms/Txt";
 
 export interface TabBarProps extends ComponentProps<"div"> {
   menus: string[];
