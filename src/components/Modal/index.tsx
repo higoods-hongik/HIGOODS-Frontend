@@ -10,6 +10,7 @@ export interface ModalBoxProps extends HTMLAttributes<HTMLDivElement> {
   onClose: () => void;
   children: ReactNode;
   position?: PositionType;
+  height?: number;
 }
 type PositionType = "center" | "top" | "bottom";
 
@@ -18,6 +19,7 @@ export const Modal = ({
   onClose,
   children,
   position = "center",
+  height,
   ...props
 }: ModalBoxProps) => {
   return createPortal(
@@ -25,7 +27,12 @@ export const Modal = ({
       {open && (
         <>
           <Dimmed onClick={onClose} />
-          <ModalBox size={[24, 16]} position={position} {...props}>
+          <ModalBox
+            size={[24, 16]}
+            position={position}
+            height={height}
+            {...props}
+          >
             {children}
           </ModalBox>
         </>
@@ -35,7 +42,7 @@ export const Modal = ({
   );
 };
 
-const ModalBox = styled(Padding)<{ position: PositionType }>`
+const ModalBox = styled(Padding)<{ position: PositionType; height?: number }>`
   @keyframes grow {
     from {
       transform: scale(0.95);
@@ -52,12 +59,14 @@ const ModalBox = styled(Padding)<{ position: PositionType }>`
   width: calc(100% - 32px);
   z-index: 3;
 
-  ${({ position }) =>
+  ${({ position, height }) =>
     match(position)
       .with("top", () => css({ top: 70 }))
       .with("bottom", () => css({ bottom: 70 }))
       .with("center", () =>
-        css({ top: "50%", transform: "translate3d(-50%, -50%, 0)" })
+        css({
+          top: `calc(50% - ${(height ?? 343) / 2}px)`,
+        })
       )
       .exhaustive()};
 `;
