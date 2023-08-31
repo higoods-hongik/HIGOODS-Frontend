@@ -14,7 +14,7 @@ const HomePage = () => {
   return (
     <>
       <BannerVideoContainer>
-        <BannerVideo muted loop autoPlay poster="/banner-image.png">
+        <BannerVideo muted loop autoPlay playsInline poster="/banner-image.png">
           <source src="/banner-pc.mp4" type="video/mp4" />
         </BannerVideo>
       </BannerVideoContainer>
