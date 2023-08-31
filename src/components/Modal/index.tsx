@@ -2,6 +2,8 @@ import styled from "@emotion/styled";
 import { HTMLAttributes, ReactNode } from "react";
 import { Padding } from "../layout/Padding";
 import { createPortal } from "react-dom";
+import { match } from "ts-pattern";
+import { css } from "@emotion/react";
 
 export interface ModalBoxProps extends HTMLAttributes<HTMLDivElement> {
   open: boolean;
@@ -11,13 +13,19 @@ export interface ModalBoxProps extends HTMLAttributes<HTMLDivElement> {
 }
 type PositionType = "center" | "top" | "bottom";
 
-export const Modal = ({ open, onClose, children, ...props }: ModalBoxProps) => {
+export const Modal = ({
+  open,
+  onClose,
+  children,
+  position = "center",
+  ...props
+}: ModalBoxProps) => {
   return createPortal(
     <>
       {open && (
         <>
           <Dimmed onClick={onClose} />
-          <ModalBox size={[24, 16]} {...props}>
+          <ModalBox size={[24, 16]} position={position} {...props}>
             {children}
           </ModalBox>
         </>
@@ -27,7 +35,7 @@ export const Modal = ({ open, onClose, children, ...props }: ModalBoxProps) => {
   );
 };
 
-const ModalBox = styled(Padding)`
+const ModalBox = styled(Padding)<{ position: PositionType }>`
   @keyframes grow {
     from {
       transform: scale(0.95);
@@ -40,11 +48,18 @@ const ModalBox = styled(Padding)`
   animation: 0.1s forwards grow cubic-bezier(0.465, 0.183, 0.153, 0.946);
   border: 1px solid black;
   position: fixed;
-  top: 70px;
   left: 16px;
   width: calc(100% - 32px);
-
   z-index: 3;
+
+  ${({ position }) =>
+    match(position)
+      .with("top", () => css({ top: 70 }))
+      .with("bottom", () => css({ bottom: 70 }))
+      .with("center", () =>
+        css({ top: "50%", transform: "translate3d(-50%, -50%, 0)" })
+      )
+      .exhaustive()};
 `;
 
 const Dimmed = styled.div`
