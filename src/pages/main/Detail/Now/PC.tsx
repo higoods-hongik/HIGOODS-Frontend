@@ -1,14 +1,14 @@
 import styled from "@emotion/styled";
-import Profile from "./components/Profile";
+import Profile from "../components/Profile";
 import Button from "~/components/atoms/Button";
 import PcContainer from "~/components/layout/PcContainer";
 import { Spacing } from "~/components/layout/Spacing";
 import { FlexBox } from "~/components/layout/FlexBox";
-import SelectOption from "./components/SelectOption";
-import Summary from "./components/Summary";
-import DetailInfo from "./components/DetailInfo";
+import Summary from "../components/Summary";
+import { TimeLine } from "./components/TimeLine";
+import { Notices } from "./components/Notices";
 
-const DetailPC = () => {
+const NowPC = () => {
   return (
     <PcContainer>
       <Spacing size={52} />
@@ -16,7 +16,9 @@ const DetailPC = () => {
         <div>
           <Summary />
           <Spacing size={72} />
-          <DetailInfo />
+          <TimeLine />
+          <Spacing size={60} />
+          <Notices />
         </div>
         <div>
           <ProfileBox>
@@ -28,14 +30,16 @@ const DetailPC = () => {
               </Button>
             </FlexBox>
           </ProfileBox>
-          <Spacing size={22} />
-          <SelectOption />
+          <Spacing size={32} />
+          <Button color="red" size="lg" fullWidth>
+            구매 페이지로 가기
+          </Button>
         </div>
       </GridLayout>
     </PcContainer>
   );
 };
-export default DetailPC;
+export default NowPC;
 
 const GridLayout = styled.div`
   display: grid;

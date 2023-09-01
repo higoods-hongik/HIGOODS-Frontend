@@ -17,6 +17,7 @@ const Notice = React.lazy(() => import("~/pages/admin/Notice"));
 const OrderForm = React.lazy(() => import("~/pages/admin/OrderForm"));
 const Delivery = React.lazy(() => import("~/pages/admin/Delivery"));
 const Detail = React.lazy(() => import("~/pages/main/Detail"));
+const Now = React.lazy(() => import("~/pages/main/Detail/Now"));
 const Form = React.lazy(() => import("~/pages/main/Form"));
 
 const router = createBrowserRouter([
@@ -31,6 +32,7 @@ const router = createBrowserRouter([
       { path: "/mypage", element: <Mypage /> },
       { path: "/mypage/info", element: <MyInfo /> },
       { path: "/goods/:id", element: <Detail /> },
+      { path: "/goods/:id/now", element: <Now /> },
       { path: "/goods/:id/start", element: <Form /> },
       {
         path: "/admin",
