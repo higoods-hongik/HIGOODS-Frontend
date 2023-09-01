@@ -1,13 +1,14 @@
 import styled from "@emotion/styled";
-import { HTMLAttributes, ReactNode } from "react";
+import { HTMLAttributes, ReactNode, useState } from "react";
 import { Padding } from "../layout/Padding";
 import { createPortal } from "react-dom";
 import { match } from "ts-pattern";
 import { css } from "@emotion/react";
+import { media } from "~/styles/theme";
 
 export interface ModalBoxProps extends HTMLAttributes<HTMLDivElement> {
-  open: boolean;
-  onClose: () => void;
+  open?: boolean;
+  onClose?: () => void;
   children: ReactNode;
   position?: PositionType;
   height?: number;
@@ -22,24 +23,47 @@ export const Modal = ({
   height,
   ...props
 }: ModalBoxProps) => {
-  return createPortal(
-    <>
-      {open && (
-        <>
-          <Dimmed onClick={onClose} />
-          <ModalBox
-            size={[24, 16]}
-            position={position}
-            height={height}
-            {...props}
-          >
-            {children}
-          </ModalBox>
-        </>
-      )}
-    </>,
-    document.body
-  );
+  const [unControlledState, setUnControlledState] = useState(true);
+
+  if (open != null) {
+    return createPortal(
+      <>
+        {open && (
+          <>
+            <Dimmed onClick={onClose} />
+            <ModalBox
+              size={[24, 16]}
+              position={position}
+              height={height}
+              {...props}
+            >
+              {children}
+            </ModalBox>
+          </>
+        )}
+      </>,
+      document.body
+    );
+  } else {
+    return createPortal(
+      <>
+        {unControlledState && (
+          <>
+            <Dimmed onClick={() => setUnControlledState(false)} />
+            <ModalBox
+              size={[24, 16]}
+              position={position}
+              height={height}
+              {...props}
+            >
+              {children}
+            </ModalBox>
+          </>
+        )}
+      </>,
+      document.body
+    );
+  }
 };
 
 const ModalBox = styled(Padding)<{ position: PositionType; height?: number }>`
@@ -54,21 +78,33 @@ const ModalBox = styled(Padding)<{ position: PositionType; height?: number }>`
   background-color: ${({ theme }) => theme.palette.white};
   animation: 0.1s forwards grow cubic-bezier(0.465, 0.183, 0.153, 0.946);
   border: 1px solid black;
-  position: fixed;
-  left: 16px;
-  width: calc(100% - 32px);
   z-index: 3;
 
-  ${({ position, height }) =>
-    match(position)
-      .with("top", () => css({ top: 70 }))
-      .with("bottom", () => css({ bottom: 70 }))
-      .with("center", () =>
-        css({
-          top: `calc(50% - ${(height ?? 343) / 2}px)`,
-        })
-      )
-      .exhaustive()};
+  ${media.mobile} {
+    width: calc(100% - 32px);
+    position: fixed;
+    left: 16px;
+    ${({ position, height }) =>
+      match(position)
+        .with("top", () => css({ top: 70 }))
+        .with("bottom", () => css({ bottom: 70 }))
+        .with("center", () =>
+          css({
+            top: `calc(50% - ${(height ?? 343) / 2}px)`,
+          })
+        )
+        .exhaustive()};
+  }
+
+  ${media.pc} {
+    position: absolute;
+    width: 480px;
+    ${({ height }) =>
+      css({
+        top: `calc(50% - ${(height ?? 343) / 2}px)`,
+      })}
+    left: calc(50% - 240px);
+  }
 `;
 
 const Dimmed = styled.div`
@@ -77,7 +113,12 @@ const Dimmed = styled.div`
   height: 100%;
   top: 0;
   left: 0;
-  z-index: 1;
+  ${media.mobile} {
+    z-index: 1;
+  }
+  ${media.pc} {
+    z-index: 3;
+  }
   @keyframes fadeIn {
     from {
       opacity: 0;

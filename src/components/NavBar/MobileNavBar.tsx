@@ -73,8 +73,7 @@ const MobileNavBar = () => {
         </NavBarMobileContainer>
       </Wrapper>
       <Modal
-        position="center"
-        height={234}
+        position="top"
         open={isMobileMenuOpen}
         onClose={() => toggleNavMenu(false)}
       >

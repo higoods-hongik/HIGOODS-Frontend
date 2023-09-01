@@ -6,6 +6,7 @@ import Media from "~/components/layout/Media";
 import MobileContainer from "~/components/layout/MobileContainer";
 import PcContainer from "~/components/layout/PcContainer";
 import { Spacing } from "~/components/layout/Spacing";
+import { PrivateClick } from "~/components/utils/PrivateClick";
 import { media } from "~/styles/theme";
 
 interface ProfileProps {
@@ -30,13 +31,15 @@ const Profile = ({ name, schoolId, major }: ProfileProps) => {
             <Media.Spacing mobile={16} pc={22} />
             <Media.PC>
               <FlexBox gap={12}>
-                <Button
-                  size="sm"
-                  color="red20"
-                  onClick={() => navigate("/mypage/info")}
-                >
-                  내 정보 수정하기
-                </Button>
+                <PrivateClick>
+                  <Button
+                    size="sm"
+                    color="red20"
+                    onClick={() => navigate("/mypage/info")}
+                  >
+                    내 정보 수정하기
+                  </Button>
+                </PrivateClick>
                 <Button size="sm" color="lineGray">
                   로그아웃
                 </Button>
@@ -44,9 +47,11 @@ const Profile = ({ name, schoolId, major }: ProfileProps) => {
             </Media.PC>
             <Media.Mobile>
               <FlexBox gap={12}>
-                <Button size="sm" color="red20">
-                  수정하기
-                </Button>
+                <PrivateClick>
+                  <Button size="sm" color="red20">
+                    수정하기
+                  </Button>
+                </PrivateClick>
                 <Button size="sm" color="lineGray">
                   로그아웃
                 </Button>
