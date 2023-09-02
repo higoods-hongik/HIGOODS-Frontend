@@ -24,7 +24,25 @@ const NowMobile = () => {
         </Button>
       </FlexBox>
       <Spacing size={48} />
-      <TimeLine />
+      <TimeLine
+        timeLines={[
+          {
+            date: "23.04.23",
+            description: "수요조사를 어쩌구",
+            title: "수요조사",
+          },
+          {
+            date: "23.04.23",
+            description: "수요조사를 어쩌구",
+            title: "수요조사",
+          },
+          {
+            date: "23.04.23",
+            description: "수요조사를 어쩌구",
+            title: "수요조사",
+          },
+        ]}
+      />
       <Spacing size={48} />
       <Notices />
     </MobileContainer>

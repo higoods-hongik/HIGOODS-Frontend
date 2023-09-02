@@ -16,7 +16,70 @@ const NowPC = () => {
         <div>
           <Summary />
           <Spacing size={72} />
-          <TimeLine />
+          <TimeLine
+            timeLines={[
+              {
+                date: "23.04.23",
+                description: "수요조사를 어쩌구",
+                title: "수요조사",
+              },
+              {
+                date: "23.04.23",
+                description: "수요조사를 어쩌구",
+                title: "수요조사",
+              },
+              {
+                date: "23.04.23",
+                description: "수요조사를 어쩌구",
+                title: "수요조사",
+              },
+              {
+                date: "23.04.23",
+                description: "수요조사를 어쩌구",
+                title: "수요조사",
+              },
+              {
+                date: "23.04.23",
+                description: "수요조사를 어쩌구",
+                title: "수요조사",
+              },
+              {
+                date: "23.04.23",
+                description: "수요조사를 어쩌구",
+                title: "수요조사",
+              },
+              {
+                date: "23.04.23",
+                description: "수요조사를 어쩌구",
+                title: "수요조사",
+              },
+              {
+                date: "23.04.23",
+                description: "수요조사를 어쩌구",
+                title: "수요조사",
+              },
+              {
+                date: "23.04.23",
+                description: "수요조사를 어쩌구",
+                title: "수요조사",
+              },
+              {
+                date: "23.04.23",
+                description: "수요조사를 어쩌구",
+                title: "수요조사",
+              },
+              {
+                date: "23.04.23",
+                description: "수요조사를 어쩌구",
+                title: "수요조사",
+              },
+              {
+                date: "23.04.23",
+                description: "수요조사를 어쩌구",
+                title: "수요조사",
+              },
+            ]}
+          />
           <Spacing size={60} />
           <Notices />
         </div>
