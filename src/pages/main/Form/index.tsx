@@ -12,7 +12,7 @@ import MobileContainer from "~/components/layout/MobileContainer";
 import { Spacing } from "~/components/layout/Spacing";
 import CustomRow from "~/components/InputRow/CustomRow";
 import Input from "~/components/InputRow/Input";
-import { useDaumPostcodePopup } from "react-daum-postcode";
+import { Address, useDaumPostcodePopup } from "react-daum-postcode";
 import { DAUM_ZIP_CODE } from "~/constants/daumZipCode";
 
 const Form = () => {
@@ -29,31 +29,23 @@ const Form = () => {
       purchaseName: "",
       refundAccount: "",
       delivery: "",
+      zipCode: "",
+      address: "",
+      deliveryMemo: "",
     },
   });
 
   const open = useDaumPostcodePopup(DAUM_ZIP_CODE);
-
-  /*   const handleComplete = (data) => {
-    let fullAddress = data.address;
-    let extraAddress = "";
-
-    if (data.addressType === "R") {
-      if (data.bname !== "") {
-        extraAddress += data.bname;
-      }
-      if (data.buildingName !== "") {
-        extraAddress +=
-          extraAddress !== "" ? `, ${data.buildingName}` : data.buildingName;
-      }
-      fullAddress += extraAddress !== "" ? ` (${extraAddress})` : "";
-    }
-
-    console.log(fullAddress); // e.g. '서울 성동구 왕십리로2길 20 (성수동1가)'
-  }; */
-
-  const handleClick = () => {
-    open({ onComplete: (data: any) => console.log(data) });
+  const handleClickAddress = () => {
+    open({
+      onComplete: (data: Address) => {
+        method.setValue("zipCode", data.zonecode);
+        method.setValue(
+          "address",
+          `${data.address} ${[data.bname, data.buildingName].join(" ")}`
+        );
+      },
+    });
   };
 
   return (
@@ -85,12 +77,16 @@ const Form = () => {
                 focused={true}
                 isInit={true}
               >
-                <Input fullWidth placeholder="내용을 입력하세요" />
+                <Input
+                  fullWidth
+                  placeholder="내용을 입력하세요"
+                  value={method.watch("zipCode")}
+                />
                 <Button
                   type="button"
                   size="md"
                   color="red20"
-                  onClick={handleClick}
+                  onClick={handleClickAddress}
                 >
                   {isMobile ? "검색하기" : "우편번호 검색"}
                 </Button>

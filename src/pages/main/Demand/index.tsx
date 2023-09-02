@@ -33,8 +33,8 @@ const Demand = () => {
               <Filter.Box title="카테고리" name="category">
                 <Filter.Option value="의류">의류</Filter.Option>
                 <Filter.Option value="잡화">잡화</Filter.Option>
-                <Filter.Option value="잡화">문구</Filter.Option>
-                <Filter.Option value="잡화">기타</Filter.Option>
+                <Filter.Option value="문구">문구</Filter.Option>
+                <Filter.Option value="기타">기타</Filter.Option>
               </Filter.Box>
             </Col>
             <Col xs={24} sm={24} md={18}>
