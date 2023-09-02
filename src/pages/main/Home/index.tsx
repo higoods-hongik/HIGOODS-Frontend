@@ -8,7 +8,7 @@ import { media } from "~/styles/theme";
 import { Spacing } from "~/components/layout/Spacing";
 import Media from "~/components/layout/Media";
 import MyHistory from "./components/MyHistory";
-import GongGuItem from "~/components/GongGuItem";
+import GongGuItem from "~/components/gonggu-items";
 
 const HomePage = () => {
   return (

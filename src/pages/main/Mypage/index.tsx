@@ -5,7 +5,7 @@ import { useState } from "react";
 import styled from "@emotion/styled";
 import { media } from "~/styles/theme";
 import MobileContainer from "~/components/layout/MobileContainer";
-import GongGuItem from "~/components/GongGuItem";
+import GongGuItem from "~/components/gonggu-items";
 import { Spacing } from "~/components/layout/Spacing";
 
 const Mypage = () => {

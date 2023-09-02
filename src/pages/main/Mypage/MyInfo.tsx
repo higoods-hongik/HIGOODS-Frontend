@@ -2,7 +2,7 @@ import { css } from "@emotion/react";
 import styled from "@emotion/styled";
 import { FormProvider, useForm } from "react-hook-form";
 import { useMediaQuery } from "react-responsive";
-import InputRow from "~/components/InputRow/InputRow";
+import InputRow from "~/components/form/InputRow";
 import Button from "~/components/atoms/Button";
 import { Txt } from "~/components/atoms/Txt";
 import { FlexBox } from "~/components/layout/FlexBox";

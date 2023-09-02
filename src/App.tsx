@@ -1,7 +1,6 @@
 import { Outlet } from "react-router-dom";
 import { ThemeProvider, media } from "./styles/theme";
-
-import NavBar from "./components/NavBar";
+import NavBar from "./components/nav-bar";
 import { Suspense } from "react";
 import { SyncLoader } from "react-spinners";
 import styled from "@emotion/styled";
