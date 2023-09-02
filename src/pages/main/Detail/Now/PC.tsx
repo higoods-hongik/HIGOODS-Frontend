@@ -7,8 +7,12 @@ import { FlexBox } from "~/components/layout/FlexBox";
 import Summary from "../components/Summary";
 import { TimeLine } from "./components/TimeLine";
 import { Notices } from "./components/Notices";
+import { useNavigate, useParams } from "react-router-dom";
 
 const NowPC = () => {
+  const navigate = useNavigate();
+  const { id } = useParams<{ id: string }>();
+
   return (
     <PcContainer>
       <Spacing size={52} />
@@ -43,26 +47,11 @@ const NowPC = () => {
                 description: "수요조사를 어쩌구",
                 title: "수요조사",
               },
-              {
-                date: "23.04.23",
-                description: "수요조사를 어쩌구",
-                title: "수요조사",
-              },
-              {
-                date: "23.04.23",
-                description: "수요조사를 어쩌구",
-                title: "수요조사",
-              },
-              {
-                date: "23.04.23",
-                description: "수요조사를 어쩌구",
-                title: "수요조사",
-              },
-              {
-                date: "23.04.23",
-                description: "수요조사를 어쩌구",
-                title: "수요조사",
-              },
+            ]}
+          />
+          <Spacing size={60} />
+          <Notices
+            notices={[
               {
                 date: "23.04.23",
                 description: "수요조사를 어쩌구",
@@ -80,8 +69,6 @@ const NowPC = () => {
               },
             ]}
           />
-          <Spacing size={60} />
-          <Notices />
         </div>
         <div>
           <ProfileBox>
@@ -94,7 +81,12 @@ const NowPC = () => {
             </FlexBox>
           </ProfileBox>
           <Spacing size={32} />
-          <Button color="red" size="lg" fullWidth>
+          <Button
+            color="red"
+            size="lg"
+            fullWidth
+            onClick={() => navigate(`/goods/${id}`)}
+          >
             구매 페이지로 가기
           </Button>
         </div>
