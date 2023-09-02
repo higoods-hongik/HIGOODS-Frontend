@@ -18,7 +18,7 @@ const DetailPC = () => {
           <Spacing size={72} />
           <DetailInfo />
         </div>
-        <RightSection>
+        <div>
           <ProfileBox>
             <Profile schoolId="B811204" major="컴퓨터 공학과" name="한규진" />
             <Spacing size={24} />
@@ -30,7 +30,7 @@ const DetailPC = () => {
           </ProfileBox>
           <Spacing size={22} />
           <SelectOption />
-        </RightSection>
+        </div>
       </GridLayout>
     </PcContainer>
   );
@@ -47,4 +47,3 @@ const ProfileBox = styled.div`
   border: 1px solid ${({ theme }) => theme.palette.black};
   padding: 24px;
 `;
-const RightSection = styled.div``;

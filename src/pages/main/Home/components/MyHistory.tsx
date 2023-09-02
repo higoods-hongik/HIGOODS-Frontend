@@ -51,13 +51,13 @@ const MyHistory = ({
               {date}
             </Txt>
             <Media.Mobile>
-              <StyledLink to="/">자세히 보러가기</StyledLink>
+              <StyledLink to="/goods/1/now">자세히 보러가기</StyledLink>
             </Media.Mobile>
           </FlexBox>
           <Media.PC>
             <Spacing size={14} />
             <FlexBox>
-              <StyledLink to="/">자세히 보러가기</StyledLink>
+              <StyledLink to="/goods/2/now">자세히 보러가기</StyledLink>
             </FlexBox>
           </Media.PC>
         </Media.Padding>
