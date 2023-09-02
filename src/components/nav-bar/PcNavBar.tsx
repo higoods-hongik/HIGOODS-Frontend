@@ -3,10 +3,9 @@ import Button from "../atoms/Button";
 import { useState, useEffect } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
 import { ReactComponent as Logo } from "~/assets/logo.svg";
-import { MenuBar } from "../MenuBar";
+import { MenuBar } from "../menu-bar";
 import { FlexBox } from "../layout/FlexBox";
 import SearchInput from "../atoms/SearchInput";
-
 import { ReactComponent as ProfileIcon } from "~/assets/icon/profile.svg";
 import styled from "@emotion/styled";
 
@@ -52,7 +51,7 @@ const PcNavBar = () => {
             color="red"
             onClick={() => {
               setMenuIndex(-1);
-              navigate("/admin/info");
+              navigate("/admin/new/info");
             }}
           >
             공구 시작하기

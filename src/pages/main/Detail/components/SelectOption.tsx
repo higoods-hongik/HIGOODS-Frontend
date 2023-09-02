@@ -1,5 +1,5 @@
 import { useState } from "react";
-import Filter from "~/components/Filter";
+import Filter from "~/components/filter";
 import { Txt } from "~/components/atoms/Txt";
 import { ReactComponent as ResetIcon } from "~/assets/icon/x-icon.svg";
 import { ReactComponent as CountPlus } from "~/assets/icon/count-plus.svg";

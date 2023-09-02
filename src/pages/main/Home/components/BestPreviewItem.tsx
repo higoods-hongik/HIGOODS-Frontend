@@ -1,6 +1,6 @@
 import styled from "@emotion/styled";
 import { Link } from "react-router-dom";
-import { GongGuItemProps } from "~/components/GongGuItem";
+import { GongGuItemProps } from "~/components/gonggu-items";
 import SquareImage from "~/components/atoms/SquareImage";
 import { Txt } from "~/components/atoms/Txt";
 import { FlexBox } from "~/components/layout/FlexBox";

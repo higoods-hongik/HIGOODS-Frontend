@@ -105,6 +105,7 @@ const FoldContainer = styled.div<{
 `;
 
 const Handler = styled(Chevron)<{ open: boolean }>`
+  color: ${({ theme }) => theme.palette.grey4};
   cursor: pointer;
   ${({ open }) =>
     open &&

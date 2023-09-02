@@ -1,5 +1,5 @@
 import { FormProvider, useForm } from "react-hook-form";
-import InputRow from "../../../components/InputRow/InputRow";
+import InputRow from "../../../components/form/InputRow";
 import FormGroup from "./components/FormGroup";
 import FormPageLayout from "./components/FormPageLayout";
 import FormSwitch from "./components/FormSwitch";
@@ -10,8 +10,8 @@ import Media from "~/components/layout/Media";
 import { useMediaQuery } from "react-responsive";
 import MobileContainer from "~/components/layout/MobileContainer";
 import { Spacing } from "~/components/layout/Spacing";
-import CustomRow from "~/components/InputRow/CustomRow";
-import Input from "~/components/InputRow/Input";
+import CustomRow from "~/components/form/CustomRow";
+import Input from "~/components/form/Input";
 import { Address, useDaumPostcodePopup } from "react-daum-postcode";
 import { DAUM_ZIP_CODE } from "~/constants/daumZipCode";
 

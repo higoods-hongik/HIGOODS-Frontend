@@ -5,7 +5,7 @@ import { NavLink, useNavigate } from "react-router-dom";
 import Hamburger from "hamburger-react";
 import { ReactComponent as SearchIcon } from "~/assets/icon/search-big.svg";
 import { ReactComponent as Logo } from "~/assets/logo.svg";
-import { Modal } from "../Modal";
+import { Modal } from "../modal";
 import Button from "../atoms/Button";
 import { theme } from "~/styles/theme";
 
@@ -112,7 +112,7 @@ const MobileNavBar = () => {
           color="red"
           onClick={() => {
             toggleNavMenu(false);
-            navigate("/admin/info");
+            navigate("/admin/new/info");
           }}
         >
           공구 시작하기

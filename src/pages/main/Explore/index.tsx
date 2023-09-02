@@ -1,8 +1,8 @@
 import styled from "@emotion/styled";
 import { Col, Row } from "antd/es/grid";
 import { useState } from "react";
-import Filter from "~/components/Filter";
-import GongGuItem from "~/components/GongGuItem";
+import Filter from "~/components/filter";
+import GongGuItem from "~/components/gonggu-items";
 import { Divider } from "~/components/atoms/Divider";
 import { FlexBox } from "~/components/layout/FlexBox";
 import Media from "~/components/layout/Media";

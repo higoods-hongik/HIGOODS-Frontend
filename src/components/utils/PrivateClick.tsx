@@ -1,5 +1,5 @@
 import { Children, ReactElement, cloneElement, useState } from "react";
-import { KakaoLogin } from "../Modal/modals/KakaoLogin";
+import { KakaoLogin } from "../modal/modals/KakaoLogin";
 
 export const PrivateClick = ({ children }: { children: ReactElement }) => {
   const child = Children.only(children);

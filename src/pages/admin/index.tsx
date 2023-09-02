@@ -1,16 +1,14 @@
-import { useEffect } from "react";
-import { Outlet, useNavigate } from "react-router-dom";
+import { Outlet } from "react-router-dom";
+import { AdminMenu } from "~/components/admin-menu-bar";
+import PcContainer from "~/components/layout/PcContainer";
 
 const AdminPage = () => {
-  const navigate = useNavigate();
-  useEffect(() => {
-    navigate("/admin/info", { replace: true });
-  }, [navigate]);
-
   return (
     <>
-      <div>어드민 레이아웃</div>
-      <Outlet />
+      <AdminMenu />
+      <PcContainer>
+        <Outlet />
+      </PcContainer>
     </>
   );
 };

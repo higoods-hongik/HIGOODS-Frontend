@@ -10,7 +10,7 @@ const Series = React.lazy(() => import("~/pages/main/Series"));
 const Demand = React.lazy(() => import("~/pages/main/Demand"));
 const Mypage = React.lazy(() => import("~/pages/main/Mypage"));
 const MyInfo = React.lazy(() => import("~/pages/main/Mypage/MyInfo"));
-const BasicInfo = React.lazy(() => import("~/pages/admin/BasicInfo"));
+const BasicInfo = React.lazy(() => import("~/pages/admin/Info"));
 const Buyer = React.lazy(() => import("~/pages/admin/Buyer"));
 const Dashboard = React.lazy(() => import("~/pages/admin/Dashboard"));
 const Notice = React.lazy(() => import("~/pages/admin/Notice"));
@@ -35,14 +35,18 @@ const router = createBrowserRouter([
       { path: "/goods/:id/now", element: <Now /> },
       { path: "/goods/:id/start", element: <Form /> },
       {
-        path: "/admin",
+        path: "/admin/:id",
         element: <AdminPage />,
         children: [
           { path: "info", element: <BasicInfo /> },
+          { path: "info/:sub", element: <BasicInfo /> },
           { path: "buyer", element: <Buyer /> },
+          { path: "buyer/:sub", element: <Buyer /> },
           { path: "notice", element: <Notice /> },
+          { path: "notice/:sub", element: <Notice /> },
           { path: "form", element: <OrderForm /> },
           { path: "delivery", element: <Delivery /> },
+          { path: "delivery/:sub", element: <Delivery /> },
           { path: "dashboard", element: <Dashboard /> },
         ],
       },
