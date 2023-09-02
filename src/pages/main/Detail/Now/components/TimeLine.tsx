@@ -7,7 +7,6 @@ import { Txt } from "~/components/atoms/Txt";
 import { FlexBox } from "~/components/layout/FlexBox";
 import { css } from "@emotion/react";
 import { keyOfPalette, media, theme } from "~/styles/theme";
-import { Spacing } from "~/components/layout/Spacing";
 import { useMediaQuery } from "react-responsive";
 
 export interface TimeLine {
@@ -145,6 +144,6 @@ const Line = styled.div<{ length: number }>`
   }
   ${media.mobile} {
     left: 45.5px;
-    height: ${({ length }) => length * 50}px;
+    height: ${({ length }) => length * 49}px;
   }
 `;
