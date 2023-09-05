@@ -132,7 +132,7 @@ export default HomePage;
 const BannerVideoContainer = styled.div`
   ${media.pc} {
     position: relative;
-    padding-bottom: 29.84375%;
+    padding-bottom: 28.72180451%;
     height: 0;
   }
 `;
