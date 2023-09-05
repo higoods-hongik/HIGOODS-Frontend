@@ -1,6 +1,5 @@
 import { css } from "@emotion/react";
 import styled from "@emotion/styled";
-import Button from "~/components/atoms/Button";
 import { Txt } from "~/components/atoms/Txt";
 import Input from "~/components/form/Input";
 import { FlexBox } from "~/components/layout/FlexBox";
@@ -36,11 +35,7 @@ export const Basic = () => {
         </Txt>
         <div
           css={css({ display: "grid", gridTemplateColumns: "repeat(3, 1fr)" })}
-        >
-          <Button>배송만</Button>
-          <Button>현장 배부만</Button>
-          <Button>둘 다 진행</Button>
-        </div>
+        ></div>
       </Padding>
     </>
   );
