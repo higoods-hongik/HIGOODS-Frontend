@@ -1,14 +1,16 @@
 import { css } from "@emotion/react";
 import styled from "@emotion/styled";
-import { HTMLAttributes } from "react";
+import { HTMLAttributes, ReactNode } from "react";
 import { typo } from "~/styles/typo";
 import { palette } from "~/styles/palette";
+import { theme } from "~/styles/theme";
 
 export interface TextProps extends HTMLAttributes<HTMLSpanElement> {
   as?: "span" | "p" | "h1" | "h2" | "h3" | "h4" | "h5" | "h6" | "div";
   typo: keyof typeof typo;
   color?: keyof typeof palette;
-  children?: string;
+  children?: ReactNode;
+  required?: boolean;
 }
 
 export type TextPropsKey = "typo" | "color";
@@ -23,11 +25,13 @@ export const Txt = ({
   as = "span",
   color = "black",
   children,
+  required = false,
   ...props
 }: TextProps) => {
   return (
     <StyledText typoKey={typo} colorKey={color} as={as} {...props}>
       {children}
+      {required && <span css={css({ color: theme.palette.red })}> *</span>}
     </StyledText>
   );
 };
