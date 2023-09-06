@@ -2,6 +2,7 @@ import { css } from "@emotion/react";
 import styled from "@emotion/styled";
 import { FormProvider, useForm } from "react-hook-form";
 import { useNavigate, useParams } from "react-router-dom";
+import { ReactComponent as UploadIcon } from "~/assets/icon/input-upload.svg";
 import Button from "~/components/atoms/Button";
 import { Txt } from "~/components/atoms/Txt";
 import { FormRadioButton } from "~/components/form/FormRadioButton";
@@ -30,7 +31,8 @@ export const Basic = () => {
             <Txt typo="heading.4" required as="div">
               공구 프로젝트의 제목을 입력해주세요.
             </Txt>
-            <FormInput
+            <Input
+              css={css({ marginTop: 12 })}
               fullWidth
               placeholder="내용을 입력하세요."
               value={watch("title")}
@@ -41,7 +43,8 @@ export const Basic = () => {
             <Txt typo="heading.4" required as="div">
               공구 프로젝트에 대한 한 줄 소개를 작성해주세요.
             </Txt>
-            <FormInput
+            <Input
+              css={css({ marginTop: 12 })}
               fullWidth
               placeholder="내용을 입력하세요."
               value={watch("description")}
@@ -71,25 +74,27 @@ export const Basic = () => {
             <Spacing size={52} />
             <GridBox gap={24} gridTemplateColumns={"1fr 1fr"}>
               <div>
-                <Txt typo="heading.4" required as="div">
-                  공구 프로젝트의 제목을 입력해주세요.
+                <Txt typo="heading.4" as="div">
+                  주문 마감기한 날짜를 지정해주세요.
                 </Txt>
-                <FormInput
+                <Input
+                  css={css({ marginTop: 12 })}
                   fullWidth
                   placeholder="내용을 입력하세요."
-                  value={watch("title")}
-                  {...register("title")}
+                  value={watch("endDate")}
+                  {...register("endDate")}
                 />
               </div>
               <div>
-                <Txt typo="heading.4" required as="div">
-                  공구 프로젝트의 제목을 입력해주세요.
+                <Txt typo="heading.4" as="div">
+                  공구에 필요한 최소 구매 인원을 설정해주세요
                 </Txt>
-                <FormInput
+                <Input
+                  css={css({ marginTop: 12 })}
                   fullWidth
                   placeholder="내용을 입력하세요."
-                  value={watch("title")}
-                  {...register("title")}
+                  value={watch("minCount")}
+                  {...register("minCount")}
                 />
               </div>
             </GridBox>
@@ -97,10 +102,12 @@ export const Basic = () => {
             <Txt typo="heading.4" as="div">
               파일 업로드 하기
             </Txt>
-            <FormInput
+            <Input
+              css={css({ marginTop: 12 })}
               fullWidth
+              type="file"
+              leftAddon={<UploadIcon />}
               placeholder="내용을 입력하세요."
-              value={watch("thumbnail")}
               {...register("thumbnail")}
             />
           </FormProvider>
@@ -141,9 +148,6 @@ export const Basic = () => {
   );
 };
 
-const FormInput = styled(Input)`
-  margin-top: 12px;
-`;
 const 그리드_왼쪽영역 = styled.div``;
 const 그리드_오른쪽영역 = styled.div``;
 

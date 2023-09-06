@@ -1,8 +1,8 @@
 import { css } from "@emotion/react";
 import { CSSProperties } from "@emotion/serialize";
-import { HTMLAttributes, ReactNode } from "react";
+import { ComponentPropsWithRef, ReactNode } from "react";
 
-export interface FlexBoxProps extends HTMLAttributes<HTMLDivElement> {
+export interface FlexBoxProps extends ComponentPropsWithRef<"div"> {
   align?: CSSProperties["alignItems"];
   justify?: CSSProperties["justifyContent"];
   direction?: CSSProperties["flexDirection"];
@@ -26,10 +26,12 @@ export const FlexBox = ({
   gap = 0,
   children,
   fullWidth,
+  ref,
   ...props
 }: FlexBoxProps) => {
   return (
     <div
+      ref={ref}
       css={css`
         display: flex;
         align-items: ${align};
