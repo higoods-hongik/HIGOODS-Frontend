@@ -4,10 +4,17 @@ import PcContainer from "../layout/PcContainer";
 import { Spacing } from "../layout/Spacing";
 import { AdminMenuItem } from "./AdminMenuItem";
 import styled from "@emotion/styled";
+import { palette } from "~/styles/palette";
 
 export const AdminMenu = () => {
   return (
-    <div css={css({ position: "sticky" })}>
+    <div
+      css={css({
+        position: "fixed",
+        width: "100%",
+        backgroundColor: palette.white,
+      })}
+    >
       <Spacing size={48} />
       <AdminMenuContainer>
         <PcContainer>

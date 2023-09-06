@@ -6,14 +6,19 @@ import { useFormContext } from "react-hook-form";
 import { css } from "@emotion/react";
 import { match } from "ts-pattern";
 
-interface InputRowProps {
+interface FormInputRowProps {
   name: string;
   label: string;
   placeholder?: string;
   variant?: "mobile" | "pc";
 }
 
-const InputRow = ({ label, name, placeholder, variant }: InputRowProps) => {
+const FormInputRow = ({
+  label,
+  name,
+  placeholder,
+  variant,
+}: FormInputRowProps) => {
   const [focused, setFocused] = useState(false);
   const { register, watch } = useFormContext();
   const value = watch(name);
@@ -34,7 +39,7 @@ const InputRow = ({ label, name, placeholder, variant }: InputRowProps) => {
   );
 };
 
-export default InputRow;
+export default FormInputRow;
 
 const formGridPcStyle = css`
   grid-template-columns: auto 564px;
