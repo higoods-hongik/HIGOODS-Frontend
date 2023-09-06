@@ -1,5 +1,5 @@
 import { FormProvider, useForm } from "react-hook-form";
-import InputRow from "../../../components/form/InputRow";
+import InputRow from "../../../components/form/FormInputRow";
 import FormGroup from "./components/FormGroup";
 import FormPageLayout from "./components/FormPageLayout";
 import FormSwitch from "./components/FormSwitch";
@@ -28,7 +28,7 @@ const Form = () => {
       phone: "",
       purchaseName: "",
       refundAccount: "",
-      delivery: "",
+      shipment: "",
       zipCode: "",
       address: "",
       deliveryMemo: "",
@@ -62,12 +62,12 @@ const Form = () => {
               <FormSwitch
                 value="delivery"
                 label="배송으로 받을게요"
-                {...method.register("delivery")}
+                {...method.register("shipment")}
               />
               <FormSwitch
                 value="distribution"
                 label="현장 배부로 받을게요"
-                {...method.register("delivery")}
+                {...method.register("shipment")}
               />
             </FormGroup>
             <FormGroup title="배송지 정보">

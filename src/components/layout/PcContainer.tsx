@@ -6,7 +6,8 @@ const PcContainer = ({ children, ...rest }: ComponentProps<"div">) => {
     <div
       css={css`
         width: 100%;
-        max-width: 984px;
+        max-width: 1016px;
+        padding: 0 16px;
         margin: auto;
       `}
       {...rest}
