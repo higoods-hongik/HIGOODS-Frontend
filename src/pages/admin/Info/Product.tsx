@@ -9,18 +9,46 @@ import Input from "~/components/form/Input";
 import { FlexBox } from "~/components/layout/FlexBox";
 import { GridBox } from "~/components/layout/GridBox";
 import { Spacing } from "~/components/layout/Spacing";
+import { OptionCreate } from "./components/option-create";
+
+type CategoryType = "CLOTHES" | "STUFF" | "OFFICE_SUPPLIES" | "ETC";
+
+export type ProductCreateType = {
+  productName: string;
+  category: CategoryType;
+  options: OptionCreateType[];
+};
+
+export type OptionCreateType = {
+  optionTitle: string;
+  optionChoice: { optionChoiceName: string; optionPrice: string }[];
+};
+
+const defaultValues: ProductCreateType = {
+  productName: "",
+  category: "CLOTHES",
+  options: [
+    {
+      optionTitle: "",
+      optionChoice: [{ optionChoiceName: "", optionPrice: "" }],
+    },
+  ],
+};
 
 export const Product = () => {
   const navigate = useNavigate();
   const { id } = useParams<{ id: string }>();
-  const method = useForm();
-  const { register, watch } = method;
+  const method = useForm<ProductCreateType>({
+    defaultValues: defaultValues,
+  });
+  const { register, watch, setValue } = method;
+
   return (
     <>
       <FlexBox gap={12} justify={"flex-start"}>
         <Txt typo="heading.1">상품 정보 이력</Txt>
         <Txt typo="heading.4" color="red">
-          (1/2 단계)
+          (2/3 단계)
         </Txt>
       </FlexBox>
       <Spacing size={24} />
@@ -46,34 +74,83 @@ export const Product = () => {
               gap={18}
               css={css({ marginTop: 12 })}
             >
-              <FormRadioButton name="category" value={"CLOTHES"}>
+              <FormRadioButton
+                name="category"
+                value={"CLOTHES"}
+                onClick={() => setValue("category", "CLOTHES")}
+              >
                 의류
               </FormRadioButton>
-              <FormRadioButton name="category" value={"STUFF"}>
+              <FormRadioButton
+                name="category"
+                value={"STUFF"}
+                onClick={() => setValue("category", "STUFF")}
+              >
                 잡화
               </FormRadioButton>
-              <FormRadioButton name="category" value={"OFFICE_SUPPLIES"}>
+              <FormRadioButton
+                name="category"
+                value={"OFFICE_SUPPLIES"}
+                onClick={() => setValue("category", "OFFICE_SUPPLIES")}
+              >
                 문구
               </FormRadioButton>
-              <FormRadioButton name="category" value={"ETC"}>
+              <FormRadioButton
+                name="category"
+                value={"ETC"}
+                onClick={() => setValue("category", "ETC")}
+              >
                 기타
               </FormRadioButton>
             </GridBox>
+
+            <Spacing size={52} />
+            <Txt typo="heading.4" as="div">
+              상품의 세부 옵션을 선택해주세요.
+            </Txt>
+            <Spacing size={20} />
+            {watch("options").map((_, i) => (
+              <OptionCreate optionIndex={i} />
+            ))}
+            <Button
+              size="sm"
+              color="lineBlack"
+              css={css({ margin: "52px auto 0 auto" })}
+              onClick={() =>
+                setValue("options", [
+                  ...watch("options"),
+                  {
+                    optionTitle: "",
+                    optionChoice: [{ optionChoiceName: "", optionPrice: "" }],
+                  },
+                ])
+              }
+            >
+              + 옵션 추가하기
+            </Button>
           </FormProvider>
         </그리드_왼쪽영역>
         <그리드_오른쪽영역>
-          <Spacing size={546} />
+          <Spacing size={326} />
           <NoticeBox>
             <Txt color="red" typo="heading.4" as="div">
-              이미지 가이드
+              옵션 설정 가이드
             </Txt>
             <Spacing size={12} />
             <Txt typo="body.2">
-              샘플이 있다면 촬영한 이미지를,
+              상품의 종류가 여러 개인가요?
               <br />
-              없다면 도안 등의 참고 이미지를
+              옵션을 입력해서 공구 참여자들이
               <br />
-              첨부해보세요!
+              원하는 선택지를 고르게 할 수 있고,
+              <br />
+              선택지별로 가격 설정도 가능해요.
+            </Txt>
+            <Spacing size={12} />
+            <Txt typo="body.2" color="grey4">
+              ex. 의류 상품 {">"} '사이즈' 옵션 추가
+              <br />
+              {"        >"} S, M, L 선택지 추가
             </Txt>
           </NoticeBox>
         </그리드_오른쪽영역>
@@ -87,9 +164,9 @@ export const Product = () => {
           color="red"
           size="lg"
           width={312}
-          onClick={() => navigate(`/admin/${id}/info/product`)}
+          onClick={() => navigate(`/admin/${id}/info/detail`)}
         >
-          다음으로 (1/3)
+          다음으로 (2/3)
         </Button>
       </FlexBox>
       <Spacing size={100} />
