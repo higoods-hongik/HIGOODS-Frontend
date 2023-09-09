@@ -71,7 +71,7 @@ const inputStyle = css`
 
   &:placeholder-shown {
     ${typo["body.1"]}
-    color : ${palette.grey6};
+    color : ${palette.grey4};
   }
 
   transition: all 0.2s ease;

@@ -1,15 +1,16 @@
 import styled from "@emotion/styled";
 import { media, theme } from "~/styles/theme";
 import Input from "./Input";
-import { useState } from "react";
+import { ComponentProps, ReactElement, ReactNode, useState } from "react";
 import { useFormContext } from "react-hook-form";
 import { css } from "@emotion/react";
 import { match } from "ts-pattern";
 
-interface FormInputRowProps {
+interface FormInputRowProps extends ComponentProps<"div"> {
   name: string;
-  label: string;
+  label: ReactNode;
   placeholder?: string;
+  leftAddon?: ReactElement;
   variant?: "mobile" | "pc";
 }
 
@@ -18,19 +19,22 @@ const FormInputRow = ({
   name,
   placeholder,
   variant,
+  leftAddon,
+  ...rest
 }: FormInputRowProps) => {
   const [focused, setFocused] = useState(false);
   const { register, watch } = useFormContext();
   const value = watch(name);
 
   return (
-    <FormGrid variant={variant}>
+    <FormGrid variant={variant} {...rest}>
       <Label isInit={value?.length === 0} focused={focused} variant={variant}>
         {label}
       </Label>
       <Input
+        leftAddon={leftAddon}
         value={value}
-        placeholder={placeholder || "내용을 입력하세요"}
+        placeholder={placeholder || "내용을 입력하세요."}
         {...register(name)}
         onFocus={() => setFocused(true)}
         onBlur={() => setFocused(false)}
