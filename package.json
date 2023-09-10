@@ -27,7 +27,14 @@
     "the-new-css-reset": "^1.9.0",
     "ts-pattern": "^5.0.5",
     "use-debounce": "^9.0.4",
-    "vite-plugin-svgr": "^3.2.0"
+    "vite-plugin-svgr": "^3.2.0",
+    "@toast-ui/editor": "^3.2.2",
+    "@toast-ui/editor-plugin-chart": "^3.0.1",
+    "@toast-ui/editor-plugin-code-syntax-highlight": "^3.1.0",
+    "@toast-ui/editor-plugin-color-syntax": "^3.1.0",
+    "@toast-ui/editor-plugin-table-merged-cell": "^3.1.0",
+    "@toast-ui/editor-plugin-uml": "^3.0.1",
+    "@toast-ui/react-editor": "^3.2.3"
   },
   "devDependencies": {
     "@types/react": "^18.2.15",
