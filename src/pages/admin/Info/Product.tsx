@@ -53,7 +53,7 @@ export const Product = () => {
       </FlexBox>
       <Spacing size={24} />
       <GridBox gridTemplateColumns={"auto 252px"} gap={84}>
-        <그리드_왼쪽영역>
+        <GridBox.Left>
           <FormProvider {...method}>
             <Txt typo="heading.4" required as="div">
               상품명을 입력해주세요.
@@ -129,8 +129,8 @@ export const Product = () => {
               + 옵션 추가하기
             </Button>
           </FormProvider>
-        </그리드_왼쪽영역>
-        <그리드_오른쪽영역>
+        </GridBox.Left>
+        <GridBox.Right>
           <Spacing size={326} />
           <NoticeBox>
             <Txt color="red" typo="heading.4" as="div">
@@ -153,7 +153,7 @@ export const Product = () => {
               {"        >"} S, M, L 선택지 추가
             </Txt>
           </NoticeBox>
-        </그리드_오른쪽영역>
+        </GridBox.Right>
       </GridBox>
       <Spacing size={60} />
       <FlexBox gap={24}>
@@ -177,8 +177,6 @@ export const Product = () => {
 const FormInput = styled(Input)`
   margin-top: 12px;
 `;
-const 그리드_왼쪽영역 = styled.div``;
-const 그리드_오른쪽영역 = styled.div``;
 
 const NoticeBox = styled.div`
   padding: 24px;

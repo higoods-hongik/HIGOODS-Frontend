@@ -11,6 +11,7 @@ interface FormInputRowProps extends ComponentProps<"div"> {
   label: ReactNode;
   placeholder?: string;
   leftAddon?: ReactElement;
+  disabled?: boolean;
   variant?: "mobile" | "pc";
 }
 
@@ -20,6 +21,7 @@ const FormInputRow = ({
   placeholder,
   variant,
   leftAddon,
+  disabled,
   ...rest
 }: FormInputRowProps) => {
   const [focused, setFocused] = useState(false);
@@ -38,6 +40,7 @@ const FormInputRow = ({
         {...register(name)}
         onFocus={() => setFocused(true)}
         onBlur={() => setFocused(false)}
+        disabled={disabled}
       />
     </FormGrid>
   );

@@ -26,7 +26,7 @@ export const Basic = () => {
       </FlexBox>
       <Spacing size={24} />
       <GridBox gridTemplateColumns={"auto 252px"} gap={84}>
-        <그리드_왼쪽영역>
+        <GridBox.Left>
           <FormProvider {...method}>
             <Txt typo="heading.4" required as="div">
               공구 프로젝트의 제목을 입력해주세요.
@@ -111,8 +111,8 @@ export const Basic = () => {
               {...register("thumbnail")}
             />
           </FormProvider>
-        </그리드_왼쪽영역>
-        <그리드_오른쪽영역>
+        </GridBox.Left>
+        <GridBox.Right>
           <Spacing size={546} />
           <NoticeBox>
             <Txt color="red" typo="heading.4" as="div">
@@ -127,7 +127,7 @@ export const Basic = () => {
               첨부해보세요!
             </Txt>
           </NoticeBox>
-        </그리드_오른쪽영역>
+        </GridBox.Right>
       </GridBox>
       <Spacing size={60} />
       <FlexBox gap={24}>
@@ -147,9 +147,6 @@ export const Basic = () => {
     </>
   );
 };
-
-const 그리드_왼쪽영역 = styled.div``;
-const 그리드_오른쪽영역 = styled.div``;
 
 const NoticeBox = styled.div`
   padding: 24px;

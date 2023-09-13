@@ -145,7 +145,7 @@ const BannerVideo = styled.video`
     height: 100%;
   }
   width: 100%;
-  object-fit: contain;
+  object-fit: cover;
   ${media.mobile} {
     height: 375px;
     object-fit: cover;
