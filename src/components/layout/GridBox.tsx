@@ -1,5 +1,6 @@
 import { css } from "@emotion/react";
 import { CSSProperties } from "@emotion/serialize";
+import styled from "@emotion/styled";
 import { HTMLAttributes, ReactNode } from "react";
 
 export interface GridBoxProps extends HTMLAttributes<HTMLDivElement> {
@@ -30,3 +31,6 @@ export const GridBox = ({
     </div>
   );
 };
+
+GridBox.Left = styled.div``;
+GridBox.Right = styled.div``;

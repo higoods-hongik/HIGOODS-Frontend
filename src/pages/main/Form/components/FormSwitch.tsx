@@ -1,5 +1,6 @@
 import { ReactComponent as CheckboxTrueIcon } from "~/assets/icon/check-true.svg";
 import { ReactComponent as CheckboxFalseIcon } from "~/assets/icon/check-false.svg";
+import { ReactComponent as CheckboxMockIcon } from "~/assets/icon/check-mock.svg";
 import { ComponentProps, forwardRef } from "react";
 import styled from "@emotion/styled";
 import { useFormContext } from "react-hook-form";
@@ -9,10 +10,11 @@ interface FormSwitchProps extends ComponentProps<"input"> {
   label: string;
   name: string;
   value: string;
+  mock?: boolean;
 }
 
 const FormSwitch = forwardRef<HTMLInputElement, FormSwitchProps>(
-  ({ label, name, value, checked, ...rest }: FormSwitchProps, ref) => {
+  ({ label, name, value, checked, mock, ...rest }: FormSwitchProps, ref) => {
     const { watch } = useFormContext();
     return (
       <>
@@ -28,10 +30,16 @@ const FormSwitch = forwardRef<HTMLInputElement, FormSwitchProps>(
           />
           <label htmlFor={value}>
             <Container>
-              {watch(name) === value || checked ? (
-                <CheckboxTrueIcon />
+              {mock ? (
+                <CheckboxMockIcon />
               ) : (
-                <CheckboxFalseIcon />
+                <>
+                  {watch(name) === value || checked ? (
+                    <CheckboxTrueIcon />
+                  ) : (
+                    <CheckboxFalseIcon />
+                  )}
+                </>
               )}
               <LabelText>{label}</LabelText>
             </Container>
