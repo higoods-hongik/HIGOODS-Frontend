@@ -7,6 +7,8 @@ import { Spacing } from "~/components/layout/Spacing";
 import { palette } from "~/styles/palette";
 import { BasicForm } from "./components/BasicForm";
 import { FormQuestionRemote } from "./components/FormQuestionRemote";
+import { MultipleChoice } from "./components/MultipleChoice";
+import { Subjective } from "./components/Subjective";
 
 const OrderForm = () => {
   return (
@@ -22,6 +24,8 @@ const OrderForm = () => {
           <Txt typo="heading.2" as="div" css={subTitleStyle}>
             추가 항목을 입력하세요
           </Txt>
+          <MultipleChoice />
+          <Subjective />
         </GridBox.Left>
 
         <GridBox.Right css={stickyLikeStyle}>
@@ -32,7 +36,7 @@ const OrderForm = () => {
           />
         </GridBox.Right>
       </GridBox>
-      <Spacing size={60} />
+      <Spacing size={80} />
       <FlexBox gap={24}>
         <Button color="red20" size="lg" width={312}>
           저장하기
