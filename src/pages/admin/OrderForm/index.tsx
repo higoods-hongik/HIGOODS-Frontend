@@ -7,8 +7,35 @@ import { Spacing } from "~/components/layout/Spacing";
 import { palette } from "~/styles/palette";
 import { BasicForm } from "./components/BasicForm";
 import { FormQuestionRemote } from "./components/FormQuestionRemote";
+import { MultipleChoice } from "./components/MultipleChoice";
+import { Subjective } from "./components/Subjective";
+import { FormProvider, useForm } from "react-hook-form";
+import { match } from "ts-pattern";
+
+export type QuestionType = "subjective" | "multipleChoice";
+export type CustomQuestion = {
+  type: QuestionType;
+  title: string;
+  options: string[];
+};
+
+const initialQuestion: Record<QuestionType, CustomQuestion> = {
+  subjective: { type: "subjective", title: "", options: [] },
+  multipleChoice: {
+    type: "multipleChoice",
+    title: "",
+    options: [""],
+  },
+};
 
 const OrderForm = () => {
+  const method = useForm<{ questions: CustomQuestion[] }>({
+    defaultValues: { questions: [] },
+  });
+  const { watch, setValue } = method;
+
+  console.log(watch());
+
   return (
     <>
       <GridBox gridTemplateColumns={"auto 252px"} gap={84}>
@@ -22,17 +49,39 @@ const OrderForm = () => {
           <Txt typo="heading.2" as="div" css={subTitleStyle}>
             추가 항목을 입력하세요
           </Txt>
+          <FormProvider {...method}>
+            {watch("questions").map((question, index) =>
+              match(question.type)
+                .with("multipleChoice", () => (
+                  <MultipleChoice index={index} key={index} />
+                ))
+                .with("subjective", () => (
+                  <Subjective index={index} key={index} />
+                ))
+                .exhaustive()
+            )}
+          </FormProvider>
         </GridBox.Left>
 
         <GridBox.Right css={stickyLikeStyle}>
           {/* @TODO api 나오면 그때 작업하기 */}
           <FormQuestionRemote
-            onAddMultipleChoice={() => console.log("")}
-            onAddSubjective={() => console.log("")}
+            onAddMultipleChoice={() =>
+              setValue("questions", [
+                ...watch("questions"),
+                initialQuestion.multipleChoice,
+              ])
+            }
+            onAddSubjective={() =>
+              setValue("questions", [
+                ...watch("questions"),
+                initialQuestion.subjective,
+              ])
+            }
           />
         </GridBox.Right>
       </GridBox>
-      <Spacing size={60} />
+      <Spacing size={80} />
       <FlexBox gap={24}>
         <Button color="red20" size="lg" width={312}>
           저장하기
