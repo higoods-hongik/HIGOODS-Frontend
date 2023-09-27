@@ -1,6 +1,6 @@
 import { css } from "@emotion/react";
 import styled from "@emotion/styled";
-import { ComponentProps, ReactElement } from "react";
+import { ComponentProps, ReactElement, forwardRef } from "react";
 import { FlexBox } from "../layout/FlexBox";
 
 interface UnderLineInputProps extends Omit<ComponentProps<"input">, "size"> {
@@ -9,19 +9,20 @@ interface UnderLineInputProps extends Omit<ComponentProps<"input">, "size"> {
   placeholderWidth?: number;
 }
 
-export const UnderLineInput = ({
-  size,
-  rightAddon,
-  placeholderWidth = 138,
-  ...rest
-}: UnderLineInputProps) => {
-  return (
-    <Container size={size} justify={"space-between"} align={"center"}>
-      <Input css={placeHolderWithSvgStyle(size, placeholderWidth)} {...rest} />
-      {rightAddon}
-    </Container>
-  );
-};
+export const UnderLineInput = forwardRef<HTMLInputElement, UnderLineInputProps>(
+  ({ size, rightAddon, placeholderWidth = 138, ...rest }, ref) => {
+    return (
+      <Container size={size} justify={"space-between"} align={"center"}>
+        <Input
+          css={placeHolderWithSvgStyle(size, placeholderWidth)}
+          {...rest}
+          ref={ref}
+        />
+        {rightAddon}
+      </Container>
+    );
+  }
+);
 
 const Container = styled(FlexBox)<{ size: "lg" | "sm" }>`
   padding-bottom: ${({ size }) => (size === "lg" ? 10 : 5)}px;
