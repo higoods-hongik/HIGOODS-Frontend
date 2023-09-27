@@ -1,5 +1,6 @@
 import { css } from "@emotion/react";
 import styled from "@emotion/styled";
+import { useEffect } from "react";
 import { FormProvider, useForm } from "react-hook-form";
 import { useNavigate, useParams } from "react-router-dom";
 import { ReactComponent as UploadIcon } from "~/assets/icon/input-upload.svg";
@@ -16,6 +17,11 @@ export const Basic = () => {
   const { id } = useParams<{ id: string }>();
   const method = useForm();
   const { register, watch } = method;
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
   return (
     <>
       <FlexBox gap={12} justify={"flex-start"}>

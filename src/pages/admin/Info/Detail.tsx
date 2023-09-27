@@ -1,6 +1,6 @@
 import { css } from "@emotion/react";
 import styled from "@emotion/styled";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import Button from "~/components/atoms/Button";
 import { Txt } from "~/components/atoms/Txt";
@@ -13,6 +13,10 @@ export const Detail = () => {
   const navigate = useNavigate();
   const { id } = useParams<{ id: string }>();
   const [content, setContent] = useState(" ");
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
 
   return (
     <>
@@ -59,7 +63,7 @@ export const Detail = () => {
           color="red"
           size="lg"
           width={312}
-          onClick={() => navigate(`/admin/${id}/info/detail`)}
+          onClick={() => navigate(`/admin/${id}/form`)}
         >
           다음으로
         </Button>

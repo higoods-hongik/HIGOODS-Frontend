@@ -6,7 +6,7 @@ import { Detail } from "./Detail";
 
 const Info = () => {
   const { sub, id } = useParams<{ sub: string; id: string }>();
-  console.log(sub);
+
   return match(sub)
     .with("basic", () => <Basic />)
     .with("product", () => <Product />)
