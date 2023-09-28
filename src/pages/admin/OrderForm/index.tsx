@@ -11,6 +11,7 @@ import { MultipleChoice } from "./components/MultipleChoice";
 import { Subjective } from "./components/Subjective";
 import { FormProvider, useForm } from "react-hook-form";
 import { match } from "ts-pattern";
+import { useEffect } from "react";
 
 export type QuestionType = "subjective" | "multipleChoice";
 export type CustomQuestion = {
@@ -34,7 +35,9 @@ const OrderForm = () => {
   });
   const { watch, setValue } = method;
 
-  console.log(watch());
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
 
   return (
     <>

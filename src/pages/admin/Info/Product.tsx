@@ -10,6 +10,7 @@ import { FlexBox } from "~/components/layout/FlexBox";
 import { GridBox } from "~/components/layout/GridBox";
 import { Spacing } from "~/components/layout/Spacing";
 import { OptionCreate } from "./components/option-create";
+import { useEffect } from "react";
 
 type CategoryType = "CLOTHES" | "STUFF" | "OFFICE_SUPPLIES" | "ETC";
 
@@ -42,6 +43,10 @@ export const Product = () => {
     defaultValues: defaultValues,
   });
   const { register, watch, setValue } = method;
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
 
   return (
     <>
