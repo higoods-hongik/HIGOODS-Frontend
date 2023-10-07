@@ -1,6 +1,6 @@
 import { Navigate, useParams } from "react-router-dom";
 import { match } from "ts-pattern";
-import { Waiting } from "./Waitiang";
+import { Waiting } from "./Waiting";
 import { Payed } from "./Payed";
 
 const Buyer = () => {
