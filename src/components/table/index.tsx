@@ -1,8 +1,117 @@
 import styled from "@emotion/styled";
 import { Table } from "antd";
 import { palette } from "~/styles/palette";
+import { renderPaginationItem } from "./renderPaginationItem";
 
 const dataSource = [
+  {
+    key: "1",
+    name: "asdadfs",
+    id: "000000",
+    date: "10 Downing Street",
+  },
+  {
+    key: "2",
+    name: "John",
+    id: 42,
+    date: "10 Downing Street",
+  },
+  {
+    key: "1",
+    name: "박준희",
+    id: "000000",
+    date: "10 Downing Street",
+  },
+  {
+    key: "2",
+    name: "John",
+    id: 42,
+    date: "10 Downing Street",
+  },
+  {
+    key: "1",
+    name: "박준희",
+    id: "000000",
+    date: "10 Downing Street",
+  },
+  {
+    key: "2",
+    name: "John",
+    id: 42,
+    date: "10 Downing Street",
+  },
+  {
+    key: "1",
+    name: "박준희",
+    id: "000000",
+    date: "10 Downing Street",
+  },
+  {
+    key: "2",
+    name: "John",
+    id: 42,
+    date: "10 Downing Street",
+  },
+  {
+    key: "1",
+    name: "박준희",
+    id: "000000",
+    date: "10 Downing Street",
+  },
+  {
+    key: "2",
+    name: "John",
+    id: 42,
+    date: "10 Downing Street",
+  },
+  {
+    key: "1",
+    name: "박준희",
+    id: "000000",
+    date: "10 Downing Street",
+  },
+  {
+    key: "2",
+    name: "John",
+    id: 42,
+    date: "10 Downing Street",
+  },
+  {
+    key: "1",
+    name: "박준희",
+    id: "000000",
+    date: "10 Downing Street",
+  },
+  {
+    key: "2",
+    name: "John",
+    id: 42,
+    date: "10 Downing Street",
+  },
+  {
+    key: "1",
+    name: "박준희",
+    id: "000000",
+    date: "10 Downing Street",
+  },
+  {
+    key: "2",
+    name: "John",
+    id: 42,
+    date: "10 Downing Street",
+  },
+  {
+    key: "1",
+    name: "박준희",
+    id: "000000",
+    date: "10 Downing Street",
+  },
+  {
+    key: "2",
+    name: "John",
+    id: 42,
+    date: "10 Downing Street",
+  },
   {
     key: "1",
     name: "박준희",
@@ -37,15 +146,21 @@ const columns = [
 
 export const CustomTable = () => {
   return (
-    <Table
-      dataSource={dataSource}
-      columns={columns}
-      components={{
-        header: { cell: StyledTh },
-        table: StyledTable,
-        body: { cell: StyledTd, row: StyledTr },
-      }}
-    />
+    <TableWrapper>
+      <Table
+        dataSource={dataSource}
+        columns={columns}
+        components={{
+          header: { cell: StyledTh },
+          table: StyledTable,
+          body: { cell: StyledTd, row: StyledTr },
+        }}
+        pagination={{
+          position: ["bottomCenter"],
+          itemRender: renderPaginationItem,
+        }}
+      />
+    </TableWrapper>
   );
 };
 
@@ -87,4 +202,57 @@ const StyledTr = styled.tr``;
 
 const StyledTable = styled.table`
   border-spacing: 8px 12px !important;
+`;
+
+const TableWrapper = styled.div`
+  ${({ theme }) => theme.typo["label.2"]}
+  color : ${({ theme }) => theme.palette.grey4};
+  .ant-pagination {
+    height: 20px !important;
+
+    & a {
+      line-height: 20px !important;
+      padding: 0px !important;
+    }
+  }
+  .ant-pagination-prev {
+    height: 20px !important;
+    min-height: 20px !important;
+    min-width: 16px !important;
+    width: 16px !important;
+    padding-top: 2px !important;
+    margin-inline-end: 14px !important;
+    & > a {
+      color: ${({ theme }) => theme.palette.grey4};
+    }
+  }
+  .ant-pagination-next {
+    height: 20px !important;
+    min-height: 20px !important;
+    min-width: 16px !important;
+    width: 16px !important;
+    padding-top: 2px !important;
+    & > a {
+      color: ${({ theme }) => theme.palette.grey4};
+    }
+  }
+  .ant-pagination-item {
+    height: 20px !important;
+    width: 16px !important;
+    min-width: 16px !important;
+    border: none !important;
+    border-bottom: 1px solid transparent !important;
+    margin-inline-end: 14px !important;
+    & > a {
+      color: ${({ theme }) => theme.palette.grey4} !important;
+    }
+  }
+  .ant-pagination-item-active {
+    border: none !important;
+    border-bottom: 1px solid ${({ theme }) => theme.palette.black} !important;
+    border-radius: 0px;
+    & > a {
+      color: ${({ theme }) => theme.palette.black} !important;
+    }
+  }
 `;
