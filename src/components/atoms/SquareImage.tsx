@@ -1,17 +1,14 @@
 import styled from "@emotion/styled";
 
 const SquareImage = ({ imageUrl = "" }: { imageUrl?: string }) => {
-  return (
-    <Wrapper>
-      <img src={imageUrl} />
-    </Wrapper>
-  );
+  return <Wrapper>{/* <img src={imageUrl} /> */}</Wrapper>;
 };
 export default SquareImage;
 
 const Wrapper = styled.div`
   width: 100%;
   position: relative;
+  background-color: ${({ theme }) => theme.palette.grey2};
 
   &::after {
     content: "";
